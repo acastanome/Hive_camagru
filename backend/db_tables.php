@@ -37,12 +37,22 @@ function addUserToTable($conn, $username, $email, $psswd) {
         $sql = "INSERT INTO Users (userName, email, psswd)
         VALUES ('$username', '$email', '$psswd')";
         $conn->exec($sql);
-//        echo "New record created successfully";
+//        echo "User added to Users successfully";
       } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
       }
 }
 
-function deleteUserFromTable() {
+//TODO delete that users photos (comments&likes), then the user
+function deleteUserFromTable($conn, $username) {
+    $sql = "";
+    try {
+        $sql = "DELETE FROM Users
+        WHERE userId";
+        $conn->exec($sql);
+        echo "User deleted from Users successfully";
+      } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+      }
 }
 ?>
