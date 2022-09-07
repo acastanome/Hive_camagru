@@ -47,4 +47,5 @@ $conn = connectPDODB($DB_DSN, $DB_USER, $DB_PASSWORD, $DB_NAME);
 createTableUsers($conn);
 createTableImages($conn);
 createTableStickers($conn);
+addUserToTable($conn, 'testuser3', 'testemail3@gmail.com', 'testpass3');
 ?>

@@ -31,8 +31,16 @@ function createTableStickers($conn) {
     $conn->exec($sql);
 }
 
-function addUserToTable() {
-//    $sql = "";
+function addUserToTable($conn, $username, $email, $psswd) {
+    $sql = "";
+    try {
+        $sql = "INSERT INTO Users (userName, email, psswd)
+        VALUES ('$username', '$email', '$psswd')";
+        $conn->exec($sql);
+//        echo "New record created successfully";
+      } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+      }
 }
 
 function deleteUserFromTable() {
