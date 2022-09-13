@@ -47,5 +47,11 @@ $conn = connectPDODB($DB_DSN, $DB_USER, $DB_PASSWORD, $DB_NAME);
 createTableUsers($conn);
 createTableImages($conn);
 createTableStickers($conn);
-addUserToTable($conn, 'testuser3', 'testemail3@gmail.com', 'testpass3');
+
+$userid = 1;
+$imgname = "testimage";
+if (isUserInTable($conn, 'testuser14', 'testemail14@gmail.com') == 0){
+    addUserToTable($conn, 'testuser14', 'testemail14@gmail.com', 'testpass11');
+}
+//addImgToTable($conn, $userid, $imgname);
 ?>
