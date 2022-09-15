@@ -1,6 +1,8 @@
 <?php
 require_once 'database.php';
 require_once 'backend/db_tables.php';
+require_once 'backend/db_users.php';
+require_once 'backend/db_images.php';
 //setup.php     create/ recreate db schema using info from config/database.php
 
 function connectPDO($DB_DSN, $DB_USER, $DB_PASSWORD){
@@ -48,10 +50,15 @@ createTableUsers($conn);
 createTableImages($conn);
 createTableStickers($conn);
 
-$userid = 1;
-$imgname = "testimage";
-if (isUserInTable($conn, 'testuser14', 'testemail14@gmail.com') == 0){
-    addUserToTable($conn, 'testuser14', 'testemail14@gmail.com', 'testpass11');
+//$userid = 19;
+$username = "testuser";
+$email = "testemail@gmail.com";
+if (isUserInTable($conn, $username, $email) == 0){
+    addUserToTable($conn, $username, $email, 'testpass');
 }
-//addImgToTable($conn, $userid, $imgname);
+$imgname = "testimage2";
+$userid = 1;
+addImgToTable($conn, $userid, $imgname);
+//deleteUserImagesFromTable($conn, $username);
+deleteUserFromTable($conn, $username);
 ?>
