@@ -25,8 +25,8 @@ function addUserToTable($conn, $username, $email, $psswd) {
     $activationCode = hash('whirlpool', $code);
     try {
         $sql = $conn->prepare("INSERT INTO Users (userName, email, psswd, dbActivationCode)
-        VALUES ('$username', '$email', '$psswd', '$activationCode')");
-        $sql->execute();
+        VALUES (?, ?, ?, ?)");
+        $sql->execute([$username, $email, $psswd, $activationCode]);
         echo "User added to Users successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -37,11 +37,11 @@ function addUserToTable($conn, $username, $email, $psswd) {
 function deleteUserImagesFromTable($conn, $username) {
     try {
         $sql = $conn->prepare("DELETE Images FROM (Images INNER JOIN Users ON Images.userId=Users.userId)
-        WHERE userName='$username'");
-        $sql->execute();
+        WHERE userName=?");
+        $sql->execute([$username]);
         echo "If there was any, user's images deleted from tables successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
     return 1;
 }
@@ -59,11 +59,11 @@ function deleteUserFromTable($conn, $username) {
     deleteUserImagesFromTable($conn, $username);
     try {
         $sql = $conn->prepare("DELETE Users FROM Users
-        WHERE userName='$username'");
-        $sql->execute();
+        WHERE userName=?");
+        $sql->execute([$username]);
         echo "User deleted from table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
     // try {
     //     $sql = $conn->prepare("DELETE Users, Images FROM (Images RIGHT JOIN Users ON Images.userId=Users.userId)
@@ -79,43 +79,43 @@ function deleteUserFromTable($conn, $username) {
 //NO CHECKS updates passed in usernames password to the one provided
 function changePasswd($conn, $username, $newPsswd) {
     try {
-        $sql = $conn->prepare("UPDATE `Users` SET `psswd` = '$newPsswd' WHERE `userName` = '$username'");
-        $sql->execute();
+        $sql = $conn->prepare("UPDATE `Users` SET `psswd` = ? WHERE `userName` = ?");
+        $sql->execute([$newPsswd, $username]);
         echo "Passwd updated in table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 
 //NO CHECKS updates passed in usernames email to the one provided
 function changeEmail($conn, $username, $newEmail) {
     try {
-        $sql = $conn->prepare("UPDATE `Users` SET `email` = '$newEmail' WHERE `userName` = '$username'");
-        $sql->execute();
+        $sql = $conn->prepare("UPDATE `Users` SET `email` = ? WHERE `userName` = ?");
+        $sql->execute([$newEmail, $username]);
         echo "Email updated in table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 
 //NO CHECKS updates passed in username to the one provided
 function changeUsername($conn, $username, $newUsername) {
     try {
-        $sql = $conn->prepare("UPDATE `Users` SET `userName` = '$newUsername' WHERE `userName` = '$username'");
-        $sql->execute();
+        $sql = $conn->prepare("UPDATE `Users` SET `userName` = ? WHERE `userName` = ?");
+        $sql->execute([$newUsername, $username]);
         echo "Username updated in table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 
 function activateAccount($conn, $activationCode) {
     try {
-        $sql = $conn->prepare("UPDATE `Users` SET `confirmedAccount` = '1' WHERE `dbActivationCode` = '$activationCode'");
-        $sql->execute();
+        $sql = $conn->prepare("UPDATE `Users` SET `confirmedAccount` = '1' WHERE `dbActivationCode` = ?");
+        $sql->execute([$activationCode]);
         echo "Account activated in table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 ?>

@@ -4,11 +4,11 @@
 function addImgToTable($conn, $userid, $imgname) {
     try {
         $sql = $conn->prepare("INSERT INTO Images (userId, imgName)
-        VALUES ('$userid', '$imgname')");
-        $sql->execute();
+        VALUES (?, ?)");
+        $sql->execute([$userid, $imgname]);
         echo "Image added to table successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 
