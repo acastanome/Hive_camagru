@@ -52,13 +52,19 @@ createTableStickers($conn);
 
 //$userid = 19;
 $username = "testuser";
-$email = "testemail@gmail.com";
-if (isUserInTable($conn, $username, $email) == 0){
+$email = "testemail4@gmail.com";
+if (isUserOrEmailInTable($conn, $username, $email) == 0){
     addUserToTable($conn, $username, $email, 'testpass');
 }
-$imgname = "testimage2";
-$userid = 1;
-addImgToTable($conn, $userid, $imgname);
+// $imgname = "testimage4";
+// $userid = 2;
+// addImgToTable($conn, $userid, $imgname);
 //deleteUserImagesFromTable($conn, $username);
-deleteUserFromTable($conn, $username);
+//deleteUserFromTable($conn, $username);
+$newpss = "testuser444";
+$newUsername = "testuser8";
+$newemail = "testuser444@gmail.com";
+// changePasswd($conn, $username, $newpss);
+//changeEmail($conn, $username, $newemail);
+// changeUsername($conn, $username, $newUsername);
 ?>

@@ -21,13 +21,15 @@ function isUserOrEmailInTable($conn, $username, $email) {
 
 //adds whatever info is passed, NO CHECKS here
 function addUserToTable($conn, $username, $email, $psswd) {
+    $code = $email.time();
+    $activationCode = hash('whirlpool', $code);
     try {
-        $sql = $conn->prepare("INSERT INTO Users (userName, email, psswd)
-        VALUES ('$username', '$email', '$psswd')");
+        $sql = $conn->prepare("INSERT INTO Users (userName, email, psswd, dbActivationCode)
+        VALUES ('$username', '$email', '$psswd', '$activationCode')");
         $sql->execute();
         echo "User added to Users successfully";
     } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     }
 }
 
@@ -102,6 +104,16 @@ function changeUsername($conn, $username, $newUsername) {
         $sql = $conn->prepare("UPDATE `Users` SET `userName` = '$newUsername' WHERE `userName` = '$username'");
         $sql->execute();
         echo "Username updated in table successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+}
+
+function activateAccount($conn, $activationCode) {
+    try {
+        $sql = $conn->prepare("UPDATE `Users` SET `confirmedAccount` = '1' WHERE `dbActivationCode` = '$activationCode'");
+        $sql->execute();
+        echo "Account activated in table successfully";
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
