@@ -3,7 +3,7 @@
 //checks if the username or email are already in use
 //returns 0 if not in use, 1 if username in use, 2 if email in use
 //helpful for debugging: echo $checkUserName;
-function isUserInTable($conn, $username, $email) {
+function isUserOrEmailInTable($conn, $username, $email) {
     $checkUserName = selectOneQualifier($conn, 'Users', 'userName', $username);
     if ($checkUserName > 0)
     {
@@ -19,7 +19,7 @@ function isUserInTable($conn, $username, $email) {
     return 0;
 }
 
-//adds whatever info is passed, no checks here
+//adds whatever info is passed, NO CHECKS here
 function addUserToTable($conn, $username, $email, $psswd) {
     try {
         $sql = $conn->prepare("INSERT INTO Users (userName, email, psswd)
@@ -72,5 +72,38 @@ function deleteUserFromTable($conn, $username) {
     //     echo $sql . "<br>" . $e->getMessage();
     // }
     return 1;
+}
+
+//NO CHECKS updates passed in usernames password to the one provided
+function changePasswd($conn, $username, $newPsswd) {
+    try {
+        $sql = $conn->prepare("UPDATE `Users` SET `psswd` = '$newPsswd' WHERE `userName` = '$username'");
+        $sql->execute();
+        echo "Passwd updated in table successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+}
+
+//NO CHECKS updates passed in usernames email to the one provided
+function changeEmail($conn, $username, $newEmail) {
+    try {
+        $sql = $conn->prepare("UPDATE `Users` SET `email` = '$newEmail' WHERE `userName` = '$username'");
+        $sql->execute();
+        echo "Email updated in table successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+}
+
+//NO CHECKS updates passed in username to the one provided
+function changeUsername($conn, $username, $newUsername) {
+    try {
+        $sql = $conn->prepare("UPDATE `Users` SET `userName` = '$newUsername' WHERE `userName` = '$username'");
+        $sql->execute();
+        echo "Username updated in table successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
 }
 ?>
