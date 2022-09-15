@@ -36,7 +36,7 @@ function selectOneQualifier($conn, $table, $col, $qualifier) {
         $sql = $conn->prepare("SELECT * FROM `$table` WHERE $col = '$qualifier'");
         $sql->execute();
         $result = $sql->fetch();
-        return $result[0];
+        return $result;//[0] would return userid but creates a warning with apache
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
         return false;
@@ -74,29 +74,58 @@ function addUserToTable($conn, $username, $email, $psswd) {
     }
 }
 
-//TODO check is photo in DB already
+//TODO check is photo in DB already. save photo to folder let path . name;
 function addImgToTable($conn, $userid, $imgname) {
-    $sql = "";
     try {
-        $sql = "INSERT INTO Images (userId, imgName)
-        VALUES ('$userid', '$imgname')";
-        $conn->exec($sql);
-        //        echo "Image added to Users successfully";
+        $sql = $conn->prepare("INSERT INTO Images (userId, imgName)
+        VALUES ('$userid', '$imgname')");
+        $sql->execute();
+        echo "Image added to table successfully";
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
 }
 
-//TODO delete that users photos (comments&likes), then the user
-// function deleteUserFromTable($conn, $username) {
-    //     $sql = "";
-    //     try {
-        //         $sql = "SELECT * FROM (Images INNER JOIN Users ON Images.userId=Users.userId)
-        //         WHERE userName='$username'";
-        //         $conn->exec($sql);
-        //         echo "User deleted from Users successfully";
-        //       } catch(PDOException $e) {
-            //         echo $sql . "<br>" . $e->getMessage();
-            //       }
-            // }
+//delete all images from a user. NO CHECKS, just looks for that users images and deletes them
+function deleteUserImagesFromTable($conn, $username) {
+    try {
+        $sql = $conn->prepare("DELETE Images FROM (Images INNER JOIN Users ON Images.userId=Users.userId)
+        WHERE userName='$username'");
+        $sql->execute();
+        echo "If there was any, user's images deleted from tables successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+    return 1;
+}
+
+//looks for the passed in usernames photos, deletes them, and then deletes the user
+//TODO delete that users comments&likes
+function deleteUserFromTable($conn, $username) {
+    $checkUserName = selectOneQualifier($conn, 'Users', 'userName', $username);
+    if (!$checkUserName)
+    {
+        echo "That username doesn't exist";
+        return 0;
+    }
+    echo "let's try to delete, since user exists";
+    deleteUserImagesFromTable($conn, $username);
+    try {
+        $sql = $conn->prepare("DELETE Users FROM Users
+        WHERE userName='$username'");
+        $sql->execute();
+        echo "User deleted from table successfully";
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+    // try {
+    //     $sql = $conn->prepare("DELETE Users, Images FROM (Images RIGHT JOIN Users ON Images.userId=Users.userId)
+    //     WHERE userName='$username'");
+    //     $sql->execute();
+    //     echo "User user's images deleted from tables successfully";
+    // } catch(PDOException $e) {
+    //     echo $sql . "<br>" . $e->getMessage();
+    // }
+    return 1;
+}
 ?>
