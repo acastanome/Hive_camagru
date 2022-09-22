@@ -1,11 +1,23 @@
 <?php
 
+function connectPDODB(){
+    try {
+        $conn = new PDO("ysql:host=localhost;dbname=db_camagru", "root", "123456");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+    return $conn;
+}
+
 //returns value (ex. in users table $result[0] is userid)if it finds the qualifier, nothing otherwise
-function selectOneQualifier($conn, $table, $col, $qualifier) {
+function selectOneQualifier($table, $col, $qualifier) {
+    $conn = connectPDODB();
     try {
         $sql = $conn->prepare("SELECT * FROM $table WHERE $col = ?");
         $sql->execute([$qualifier]);
         $result = $sql->fetch();
+        $conn = null;
         return $result;//[0] would return userid but creates a warning with apache
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -17,11 +29,13 @@ function selectOneQualifier($conn, $table, $col, $qualifier) {
 //IMAGE FUNCTIONS
 
 //TODO check is photo in DB already. save photo to folder let path . name;
-function addImgToTable($conn, $userId, $imgName, $imgPath) {
+function addImgToTable($userId, $imgName, $imgPath) {
+    $conn = connectPDODB();
     try {
         $sql = $conn->prepare("INSERT INTO Images (`user_id`, `img_name`, img_path)
         VALUES (?, ?)");
         $sql->execute([$userId, $imgName, $imgPath]);
+        $conn = null;
         echo "Image added to table successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -36,7 +50,8 @@ function addImgToTable($conn, $userId, $imgName, $imgPath) {
 //helpful for debugging: echo $checkUserName;
 function isUserOrEmailInTable($username, $email) {
     $conn = connectPDODB();
-    $checkUserName = selectOneQualifier($conn, 'Users', 'user_name', $username);
+    $checkUserName = selectOneQualifier('Users', 'user_name', $username);
+    $conn = null;
     if ($checkUserName > 0)
     {
         echo "That username is already in table";
@@ -60,6 +75,7 @@ function addUserToTable($username, $email, $psswd) {
         $sql = $conn->prepare("INSERT INTO Users (`user_name`, `email`, psswd, activation_code)
         VALUES (?, ?, ?, ?)");
         $sql->execute([$username, $email, $psswd, $activationCode]);
+        $conn = null;
         echo "User added to Users successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -73,6 +89,7 @@ function deleteUserImagesFromTable($username) {
         $sql = $conn->prepare("DELETE Images FROM (Images INNER JOIN Users ON Images.user_id=Users.user_id)
         WHERE `user_name`=?");
         $sql->execute([$username]);
+        $conn = null;
         echo "If there was any, user's images deleted from tables successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -84,14 +101,15 @@ function deleteUserImagesFromTable($username) {
 //TODO delete that users comments&likes
 function deleteUserFromTable($username) {
     $conn = connectPDODB();
-    $checkUserName = selectOneQualifier($conn, 'Users', `user_name`, $username);
+    $checkUserName = selectOneQualifier('Users', `user_name`, $username);
     if (!$checkUserName)
     {
+        $conn = null;
         echo "That username doesn't exist";
         return 0;
     }
     echo "let's try to delete, since user exists";
-    deleteUserImagesFromTable($conn, $username);
+    deleteUserImagesFromTable($username);
     try {
         $sql = $conn->prepare("DELETE Users FROM Users
         WHERE `user_name`=?");
@@ -117,6 +135,7 @@ function changePasswd($username, $newPsswd) {
     try {
         $sql = $conn->prepare("UPDATE `Users` SET `psswd` = ? WHERE `user_name` = ?");
         $sql->execute([$newPsswd, $username]);
+        $conn = null;
         echo "Passwd updated in table successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -129,6 +148,7 @@ function changeEmail($username, $newEmail) {
     try {
         $sql = $conn->prepare("UPDATE `Users` SET `email` = ? WHERE `user_name` = ?");
         $sql->execute([$newEmail, $username]);
+        $conn = null;
         echo "Email updated in table successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -141,6 +161,7 @@ function changeUsername($username, $newUsername) {
     try {
         $sql = $conn->prepare("UPDATE `Users` SET `user_name` = ? WHERE `user_name` = ?");
         $sql->execute([$newUsername, $username]);
+        $conn = null;
         echo "Username updated in table successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
@@ -152,6 +173,7 @@ function activateAccount($activationCode) {
     try {
         $sql = $conn->prepare("UPDATE `Users` SET `confirmed_account` = '1' WHERE `activation_code` = ?");
         $sql->execute([$activationCode]);
+        $conn = null;
         echo "Account activated in table successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();

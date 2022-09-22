@@ -6,10 +6,10 @@
       </div>
 
       <?php
-      if (!$_SESSION['logged_user'] || $_SESSION['logged_user'] === "")
+      if (!isset($_SESSION['logged_user']))
       {
       ?>
-      <h3>Not logged in. <br>Display navbar (Home, log in) and all photos(cant comment or like)</h3>
+      <!-- <h3>Not logged in. <br>Display navbar (Home, log in) and all photos(cant comment or like)</h3> -->
       <div class="dropdown" id="out" style="float: right;">
         <button class="dropbtn">
           <a href="login.php">Log in</a>
@@ -20,7 +20,7 @@
       else
       {
       ?>
-      <h3>Display navbar (Home, camera, profile, log out) and all photos(can comment or like)</h3>
+      <!-- <h3>Display navbar (Home, camera, profile, log out) and all photos(can comment or like)</h3> -->
       <div class="dropdown" id="out">
         <button class="dropbtn">
         <a href="camera.php">Camera</a>
