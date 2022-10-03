@@ -1,44 +1,54 @@
-function validateForm() {
-  //let name = document.forms["loginForm"]["f_username"].value;
-  let pswd = document.forms["loginForm"]["f_passwd"].value;
-  let regularExpression =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,30}$/;
+function validateCreateForm() {
+  let name = document.forms["createForm"]["f_username"].value;
+  let pswd = document.forms["createForm"]["f_passwd"].value;
 
-  // if (document.forms["loginForm"]["f_username"].length < 8) {
-  //   //alert("Username must be albi");
-  //   alert("Username must be at least 8 characters long");
-  //   return false;
-  // }
-  // if (document.forms["loginForm"]["f_username"].value != "albialbi") {
-  //   //alert("Username must be albi");
-  //   alert(
-  //     "Username must be at least 8 characters long, with one special character"
-  //   );
-  //   return false;
-  // }
-  if (pswd.length < 8 || pswd.length > 30 || (!regularExpression.test(pswd))) {
-    alert("Password must be between 8 and 30 characters long");
+  if (!validateUsername(name) || !validatePassword(pswd)) {
+    return false;
+  }
+}
+
+function validateForm() {
+  let name = document.forms["loginForm"]["f_username"].value;
+  let pswd = document.forms["loginForm"]["f_passwd"].value;
+
+  if (!validateUsername(name) || !validatePassword(pswd)) {
     return false;
   }
 }
 
 //password_verify and bcrypt
 
-function validatePassword(let pswd) {
-  let minNumberofChars = 8;
+function validateUsername(name) {
+  let minNumberofChars = 1;
   let maxNumberofChars = 30;
-  let regularExpression =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,30}$/;
-  if (
-    pswd.length < minNumberofChars ||
-    pswdd.length > maxNumberofChars
-  ) {
+  let regularExpression = /^[a-zA-Z0-9_]{1,30}$/;
+  if (name.length < minNumberofChars || name.length > maxNumberofChars) {
+    alert("Username can't be over 30 characters long");
     return false;
   }
-  if (!regularExpression.test(newPassword)) {
+  if (!regularExpression.test(name)) {
     alert(
-      "password should contain atleast one number and one special character"
+      "Username can only contain letters, numbers and the special character _"
     );
     return false;
   }
+  return true;
+}
+
+function validatePassword(pswd) {
+  let minNumberofChars = 8;
+  let maxNumberofChars = 30;
+  let regularExpression =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,30}$/;
+  if (pswd.length < minNumberofChars || pswd.length > maxNumberofChars) {
+    alert("Password must be between 8 and 30 characters long");
+    return false;
+  }
+  if (!regularExpression.test(pswd)) {
+    alert(
+      "Password can only contain letters, numbers and special characters !@#$%^&* (at least one of each)"
+    );
+    return false;
+  }
+  return true;
 }
