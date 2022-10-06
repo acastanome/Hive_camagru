@@ -1,34 +1,61 @@
-function validateCreateForm(event) {
-  // event.preventDefault();
-  let name = document.forms["createForm"]["f_username"].value;
-  let pswd = document.forms["createForm"]["f_passwd"].value;
-  let email = document.forms["createForm"]["f_email"].value;
-  // const form = document.getElementById("create-form");
+//password_verify and bcrypt
 
-  // if (validateUsername(name) && validatePassword(pswd) && validateEmail(email)) {
-  if (!validateUsername(name) || !validatePassword(pswd) || !validateEmail(email)) {
-    // return false;
-    event.preventDefault();
-  }
-}
+// function validateLoginForm(event) {
+//   let name = document.forms["loginForm"]["f_username"].value;
+//   let pswd = document.forms["loginForm"]["f_passwd"].value;
 
-function validateForm() {
+//   if (!validateLoginUsername(name) || !validateLoginPassword(pswd)) {
+//     event.preventDefault();
+//   }
+// }
+
+function validateLoginForm(event) {
   let name = document.forms["loginForm"]["f_username"].value;
   let pswd = document.forms["loginForm"]["f_passwd"].value;
 
-  if (!validateUsername(name) || !validatePassword(pswd)) {
-    // return false;
+  if (!validateLoginUsername(name) || !validateLoginPassword(pswd)) {
     event.preventDefault();
   }
 }
 
-//password_verify and bcrypt
+function validateLoginUsername(name) {
+  let regularExpression = /^[a-zA-Z0-9_]{1,30}$/;
+
+  if (name.length < 1 || name.length > 30 || !regularExpression.test(name)) {
+    alert("Invalid username.");
+    return false;
+  }
+  return true;
+}
+
+function validateLoginPassword(pswd) {
+  let regularExpression =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,30}$/;
+
+  if (pswd.length < 8 || pswd.length > 30 || !regularExpression.test(pswd)) {
+    alert("Invalid password.");
+    return false;
+  }
+  return true;
+}
+
+function validateCreateForm(event) {
+  let name = document.forms["createForm"]["f_username"].value;
+  let pswd = document.forms["createForm"]["f_passwd"].value;
+  let email = document.forms["createForm"]["f_email"].value;
+
+  if (
+    !validateUsername(name) ||
+    !validatePassword(pswd) ||
+    !validateEmail(email)
+  ) {
+    event.preventDefault();
+  }
+}
 
 function validateUsername(name) {
-  let minNumberofChars = 1;
-  let maxNumberofChars = 30;
   let regularExpression = /^[a-zA-Z0-9_]{1,30}$/;
-  if (name.length < minNumberofChars || name.length > maxNumberofChars) {
+  if (name.length < 1 || name.length > 30) {
     alert("Username can't be over 30 characters long");
     return false;
   }
@@ -42,11 +69,9 @@ function validateUsername(name) {
 }
 
 function validatePassword(pswd) {
-  let minNumberofChars = 8;
-  let maxNumberofChars = 30;
   let regularExpression =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,30}$/;
-  if (pswd.length < minNumberofChars || pswd.length > maxNumberofChars) {
+  if (pswd.length < 8 || pswd.length > 30) {
     alert("Password must be between 8 and 30 characters long");
     return false;
   }
@@ -61,12 +86,9 @@ function validatePassword(pswd) {
 
 /* characters that can be included in email addresses according to RFC 3696 */
 function validateEmail(email) {
-  console.log(email.length)
-  let minNumberofChars = 3;
-  let maxNumberofChars = 50;
-  let regularExpression =
-    /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
-  if (email.length < minNumberofChars || email.length > maxNumberofChars) {
+  console.log(email.length);
+  let regularExpression = /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
+  if (email.length < 3 || email.length > 50) {
     alert("Email must be between 3 and 50 characters long");
     return false;
   }

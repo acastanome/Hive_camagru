@@ -6,8 +6,8 @@ if (!isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
-    <form name="createForm" action="create.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
-        Username: <input type="text" name="f_username" autocomplete="username" required/>
+    <form name="createForm" action="create_account.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
+        Username: <input type="text" name="f_username" required/>
         <br /><br />
         Email: <input type="email" name="f_email" required/>
         <br /><br />
@@ -22,11 +22,18 @@ if (!isset($_SESSION['logged_user'])) {
     require_once '../backend/db_user.php';
 
     if (isset($_POST['submit'])) {
-        if (isUserOrEmailTaken($_POST['f_username'], $_POST['f_email'])) {
-            echo "That user already exists";
+        $validInput = checkCreateAccountInput($_POST['f_username'], $_POST['f_passwd'], $_POST['f_email']);
+        if ($validInput !== true) {
+            echo $validInput;
         }
         else {
-            addUserToTable($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
+            if (isUserOrEmailTaken($_POST['f_username'], $_POST['f_email'])) {
+                echo "That username or email is already taken.";
+            }
+            else {
+                addUserToTable($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
+                echo "User created successfully.";
+            }
         }
     }
 } else {
