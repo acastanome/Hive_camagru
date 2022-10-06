@@ -7,7 +7,8 @@ if (!isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
-    <form name="createForm" action="create.php" onsubmit="return validateCreateForm()" method="POST" style="padding-top: 20%">
+    <!-- <form id="create-form" name="createForm" action="create.php" onsubmit="validateCreateForm()" method="POST" style="padding-top: 20%"> -->
+    <form name="createForm" action="create.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
         Username: <input type="text" name="f_username" autocomplete="username" required/>
         <br /><br />
         Email: <input type="email" name="f_email" required/>

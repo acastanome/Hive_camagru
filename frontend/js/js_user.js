@@ -1,9 +1,14 @@
-function validateCreateForm() {
+function validateCreateForm(event) {
+  // event.preventDefault();
   let name = document.forms["createForm"]["f_username"].value;
   let pswd = document.forms["createForm"]["f_passwd"].value;
+  let email = document.forms["createForm"]["f_email"].value;
+  // const form = document.getElementById("create-form");
 
-  if (!validateUsername(name) || !validatePassword(pswd)) {
-    return false;
+  // if (validateUsername(name) && validatePassword(pswd) && validateEmail(email)) {
+  if (!validateUsername(name) || !validatePassword(pswd) || !validateEmail(email)) {
+    // return false;
+    event.preventDefault();
   }
 }
 
@@ -12,7 +17,8 @@ function validateForm() {
   let pswd = document.forms["loginForm"]["f_passwd"].value;
 
   if (!validateUsername(name) || !validatePassword(pswd)) {
-    return false;
+    // return false;
+    event.preventDefault();
   }
 }
 
@@ -47,6 +53,26 @@ function validatePassword(pswd) {
   if (!regularExpression.test(pswd)) {
     alert(
       "Password can only contain letters, numbers and special characters !@#$%^&* (at least one of each)"
+    );
+    return false;
+  }
+  return true;
+}
+
+/* characters that can be included in email addresses according to RFC 3696 */
+function validateEmail(email) {
+  console.log(email.length)
+  let minNumberofChars = 3;
+  let maxNumberofChars = 50;
+  let regularExpression =
+    /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
+  if (email.length < minNumberofChars || email.length > maxNumberofChars) {
+    alert("Email must be between 3 and 50 characters long");
+    return false;
+  }
+  if (!regularExpression.test(email)) {
+    alert(
+      "Eamil can only contain letters, numbers and special characters !#$%&`*+-/=?^_'.{|}~@"
     );
     return false;
   }
