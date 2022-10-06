@@ -3,11 +3,9 @@
 <body>
 <?php
 if (!isset($_SESSION['logged_user'])) {
-
     require_once 'navbar.php';?>
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
-    <!-- <form id="create-form" name="createForm" action="create.php" onsubmit="validateCreateForm()" method="POST" style="padding-top: 20%"> -->
     <form name="createForm" action="create.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
         Username: <input type="text" name="f_username" autocomplete="username" required/>
         <br /><br />
@@ -24,9 +22,6 @@ if (!isset($_SESSION['logged_user'])) {
     require_once '../backend/db_user.php';
 
     if (isset($_POST['submit'])) {
-        // $uId = $_POST['f_username'];
-        // $pId = $_POST['f_passwd'];
-        
         if (isUserOrEmailTaken($_POST['f_username'], $_POST['f_email'])) {
             echo "That user already exists";
         }
@@ -34,17 +29,6 @@ if (!isset($_SESSION['logged_user'])) {
             addUserToTable($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
         }
     }
-
-    // if (isset($_POST['f_username']) && isset($_POST['f_passwd'])) {
-    //     if (isValidUser($_POST['f_username'], $_POST['f_passwd']))
-    //     {
-    //         $_SESSION['logged_user'] = $_POST['f_username'];
-    //         header("Location: home.php");
-    //     }
-    //     else {//if (!isset($_POST['submit']))
-    //         echo "log in NOT successfull";
-    //     }
-    // }
 } else {
     header("Location: home.php");
 }
