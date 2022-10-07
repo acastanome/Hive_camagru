@@ -8,8 +8,10 @@ function sendActivationEmail($user_id) {
         $actual_link = "http://localhost:8080/frontend/activate.php?user_id=" . $user_id;
         $toEmail = $_POST["f_email"];
         $subject = "User Registration Activation Email";
+        $token = bin2hex(random_bytes(10));
         // $content = "Click this link to activate your account. <a href='" . $actual_link . "'>" . $actual_link . "</a>";
-        $content = "Click this link to activate your account. " . $actual_link ;
+        // $content = "Click this link to activate your account. " . $actual_link;
+        $content = "Click this link $token to activate your account. " . $actual_link;
         // $mailHeaders = "From: Camagru Admin\r\n";
         // if(mail($toEmail, $subject, $content, $mailHeaders)) {
         if(mail($toEmail, $subject, $content)) {
@@ -29,21 +31,3 @@ function sendActivationEmail($user_id) {
 }
 
 ?>
-<?php
-$msg = '
-<html>
-<head>
-<link href="http://linktocss/.../etc" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-<p>I am testing this message.</p>
-<a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
-<div>
-This is a clear test to go back to the line. 
-</div>
-Regards, <br>
-Company Name.
-</body>
-</html>
-';?>

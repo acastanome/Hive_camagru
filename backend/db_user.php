@@ -74,6 +74,7 @@ function isUserOrEmailTaken($username, $email) {
 function addUserToTable($username, $email, $psswd) {
     $conn = connectPDODB();
     $psswd = password_hash($psswd, PASSWORD_BCRYPT);
+    //change to $token = bin2hex(random_bytes(10));
     $code = $email.time();
     $activationCode = password_hash($code, PASSWORD_BCRYPT);
     try {
