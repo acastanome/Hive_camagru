@@ -3,7 +3,6 @@
 require_once 'db_connect.php';
 
 function checkLoginInput($username, $psswd) {
-    //check username
     if (strlen($username) < 1 || strlen($username) > 30 || !preg_match('/^[a-zA-Z0-9_]{1,30}$/', $username) || strlen($psswd) < 8 || strlen($psswd) > 30 || !preg_match('/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,30}$/', $psswd)) {
       return "Invalid input, you trickster!";
     }
@@ -36,13 +35,15 @@ function checkCreateAccountInput($username, $psswd, $email) {
 
 function isValidUser($username, $psswd) {
     $conn = connectPDODB();
-        try {
-        $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ? AND `psswd` = ?)");
-        $sql->execute([$username, $psswd]);
+    try {
+        $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ?)");
+        $sql->execute([$username]);
         $result = $sql->fetch();
+        //echo "<script>console.log('Debug Objects: " . $result['psswd'] . "' );</script>";
         $conn = null;
-        if ($result)
-        return $result[0];
+        if ($result && password_verify($psswd, $result['psswd'])) {
+            return $result[0];
+        }
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
     }
@@ -55,7 +56,6 @@ function isUserOrEmailTaken($username, $email) {
         $sql->execute([$username]);
         $result = $sql->fetch();
         if ($result) {
-            // echo "That username is already in table";
             return $result[0];
         }
         $sql = $conn->prepare("SELECT * FROM Users WHERE (`email` = ?)");
@@ -63,7 +63,6 @@ function isUserOrEmailTaken($username, $email) {
         $result = $sql->fetch();
         $conn = null;
         if ($result) {
-            // echo "That email is already in table";
             return $result[0];
         }
     } catch(PDOException $e) {
@@ -74,14 +73,14 @@ function isUserOrEmailTaken($username, $email) {
 //adds whatever info is passed, NO CHECKS here
 function addUserToTable($username, $email, $psswd) {
     $conn = connectPDODB();
+    $psswd = password_hash($psswd, PASSWORD_BCRYPT);
     $code = $email.time();
-    $activationCode = hash('whirlpool', $code);
+    $activationCode = password_hash($code, PASSWORD_BCRYPT);
     try {
         $sql = $conn->prepare("INSERT INTO Users (`user_name`, `email`, psswd, activation_code)
         VALUES (?, ?, ?, ?)");
         $sql->execute([$username, $email, $psswd, $activationCode]);
         $conn = null;
-        // echo "User added to Users successfully";
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
     }

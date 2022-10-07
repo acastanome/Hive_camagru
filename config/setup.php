@@ -34,7 +34,7 @@ createTables($conn);
 //TEST PURPOSES ONLY FROM HERE
 $username = "testuser2";
 $email = "testemail2@gmail.com";
-$psswd = "testpass2";
+$psswd = "testpass2!";
 
 function selectOneQualifier($conn, $table, $col, $qualifier) {
     try {
@@ -48,36 +48,45 @@ function selectOneQualifier($conn, $table, $col, $qualifier) {
     }
 }
 
-function isUserOrEmailInTable($conn, $username, $email) {
-    $checkUserName = selectOneQualifier($conn, 'Users', 'user_name', $username);
-    if ($checkUserName > 0)
-    {
-        echo "That username is already in table";
-        return 1;
-    }
-    $checkEmail = selectOneQualifier($conn, 'Users', 'email', $email);
-    if ($checkEmail > 0)
-    {
-         echo "That email is already in table";
-         return 2;
-    }
-    return 0;
-}
-
-function addUserToTable($conn, $username, $email, $psswd) {
-    $code = $email.time();
-    $activationCode = hash('whirlpool', $code);
+function isUserOrEmailTaken($conn, $username, $email) {
+    // $conn = connectPDODB();
     try {
-        $sql = $conn->prepare("INSERT INTO Users (`user_name`, `email`, psswd, activation_code)
-        VALUES (?, ?, ?, ?)");
-        $sql->execute([$username, $email, $psswd, $activationCode]);
-        echo "User added to Users successfully";
+        $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ?)");
+        $sql->execute([$username]);
+        $result = $sql->fetch();
+        if ($result) {
+            return $result[0];
+        }
+        $sql = $conn->prepare("SELECT * FROM Users WHERE (`email` = ?)");
+        $sql->execute([$email]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
     }
 }
 
-if (isUserOrEmailInTable($conn, $username, $email) == 0){
+//adds whatever info is passed, NO CHECKS here
+function addUserToTable($conn, $username, $email, $psswd) {
+    // $conn = connectPDODB();
+    $psswd = password_hash($psswd, PASSWORD_BCRYPT);
+    $code = $email.time();
+    $activationCode = password_hash($code, PASSWORD_BCRYPT);
+    try {
+        $sql = $conn->prepare("INSERT INTO Users (`user_name`, `email`, psswd, activation_code)
+        VALUES (?, ?, ?, ?)");
+        $sql->execute([$username, $email, $psswd, $activationCode]);
+        $conn = null;
+        // echo "User added to Users successfully";
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
+
+if (isUserOrEmailTaken($conn, $username, $email) == 0){
     addUserToTable($conn, $username, $email, $psswd);
 }
 //TO HERE
