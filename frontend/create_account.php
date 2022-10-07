@@ -20,7 +20,7 @@ if (!isset($_SESSION['logged_user'])) {
 
     <?php //check with backend
     require_once '../backend/db_user.php';
-
+    require_once '../backend/db_email.php';
     if (isset($_POST['submit'])) {
         $validInput = checkCreateAccountInput($_POST['f_username'], $_POST['f_passwd'], $_POST['f_email']);
         if ($validInput !== true) {
@@ -30,9 +30,15 @@ if (!isset($_SESSION['logged_user'])) {
             if (isUserOrEmailTaken($_POST['f_username'], $_POST['f_email'])) {
                 echo "That username or email is already taken.";
             }
+            // else {
+            //     addUserToTable($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
+            //     echo "User created successfully.";
+            //     sendActivationEmail();
+            // }
             else {
                 addUserToTable($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
-                echo "User created successfully.";
+                //can this crash if we dissable js and the user is not added to table (wrong input catch in backend), but next funciton is called anyway?
+                echo sendActivationEmail(getUserId($_POST['f_username']));
             }
         }
     }

@@ -85,4 +85,19 @@ function addUserToTable($username, $email, $psswd) {
         echo "<br>" . $e->getMessage();
     }
 }
+
+function getUserId($username) {
+    $conn = connectPDODB();
+    try {
+        $sql = $conn->prepare("SELECT `user_id` FROM Users WHERE (`user_name` = ?)");
+        $sql->execute([$username]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
 ?>
