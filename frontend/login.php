@@ -27,13 +27,15 @@ if (!isset($_SESSION['logged_user'])) {
             echo $validInput;
         }
         else {
-            if (isValidUser($_POST['f_username'], $_POST['f_passwd']))
+            $validUser = isValidUser($_POST['f_username'], $_POST['f_passwd']);
+            if ($validUser === true)
             {
                 $_SESSION['logged_user'] = $_POST['f_username'];
                 header("Location: home.php");
             }
             else {
-                echo "Invalid username or password.";
+                echo $validUser;
+                // echo "Invalid username or password.";
             }
         }
     }

@@ -5,7 +5,7 @@ function createTableUsers($conn) {
         `user_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
         `user_name` VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        confirmed_account BOOLEAN DEFAULT false,
+        active_account BOOLEAN DEFAULT false,
         activation_code VARCHAR(255) NOT NULL,
         psswd VARCHAR(128) NOT NULL,
         notifications BOOLEAN DEFAULT true)");
