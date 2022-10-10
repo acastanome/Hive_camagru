@@ -17,6 +17,7 @@
          $sql = $conn->prepare("UPDATE `Users` SET `active_account` = true WHERE (`activation_code`= ?)");
          $result = $sql->execute([$code]);
          if(!empty($result)) {
+            //PROBLEM HERE: returns this message even if there is no account to be activated with that code. Otherwise works fine
             echo "Your account has been activated!";
          } else {
             echo "Problem in account activation.";
