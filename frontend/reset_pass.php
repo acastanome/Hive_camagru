@@ -46,7 +46,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
 } else {//set newpass
     if (isset($_POST['submit']) && isset($_POST['f_code'])) {
         $code = htmlspecialchars($_POST['f_code']);
-        $newpass = htmlspecialchars($_POST['f_newpass']);
+        $newpass = password_hash(htmlspecialchars($_POST['f_newpass']), PASSWORD_BCRYPT);
         require_once '../backend/db_user.php';
         $conn = connectPDODB();
         try {
