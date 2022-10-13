@@ -9,7 +9,7 @@
       $code = htmlspecialchars($_GET["activation_code"]);
       $conn = connectPDODB();
       try {
-         $sql = $conn->prepare("UPDATE `Users` SET `active_account` = true WHERE (`activation_code`= ?");
+         $sql = $conn->prepare("UPDATE `Users` SET `active_account` = true WHERE (`activation_code` = ?)");
          $sql->execute([$code]);
          $result = $sql->rowCount();
          if(!empty($result)) {
