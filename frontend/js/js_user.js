@@ -1,13 +1,27 @@
 //password_verify and bcrypt
 
-// function validateLoginForm(event) {
-//   let name = document.forms["loginForm"]["f_username"].value;
-//   let pswd = document.forms["loginForm"]["f_passwd"].value;
+//We don't want alert messages from this function
+function validateResetPassForm(event) {
+  let input = document.forms["resetPassForm"]["f_input"].value;
+  let regularExpression = /^[a-zA-Z0-9_]{1,30}$/;
+  let regularExpression2 = /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
 
-//   if (!validateLoginUsername(name) || !validateLoginPassword(pswd)) {
-//     event.preventDefault();
-//   }
-// }
+  if (
+    (input.length < 1 || input.length > 30 || !regularExpression.test(input)) &&
+    (input.length < 3 || input.length > 50 || !regularExpression2.test(input))
+  ) {
+    event.preventDefault();
+  }
+}
+
+function validateNewPassForm(event) {
+  let pswd = document.forms["newPassForm"]["f_newpass"].value;
+  // document.forms["newPassForm"]["f_code"].value = code;
+
+  if (!validatePassword(pswd)) {
+    event.preventDefault();
+  }
+}
 
 function validateLoginForm(event) {
   let name = document.forms["loginForm"]["f_username"].value;
@@ -86,7 +100,7 @@ function validatePassword(pswd) {
 
 /* characters that can be included in email addresses according to RFC 3696 */
 function validateEmail(email) {
-  console.log(email.length);
+  // console.log(email.length);
   let regularExpression = /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
   if (email.length < 3 || email.length > 50) {
     alert("Email must be between 3 and 50 characters long");
