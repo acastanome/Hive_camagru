@@ -1,4 +1,6 @@
 
+https://www.geeksforgeeks.org/instagram-clone-using-html-css/
+
 <!-- <div> -->
       <?php
       // if (!isset($_SESSION['logged_user']))
@@ -32,11 +34,113 @@
 	<title>Instagram Clone</title>
 </head>
 <body>
+
+<!-- Our Header section Starts from here -->
+	<!-- <header>
+		<nav class="navbar">
+			<div class="container">
+				<div class="logo">
+					<a href="#">
+					<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609090809/download-200x200.png"
+						alt="img1">
+					</a>
+				</div>
+				<div class="searchbar">
+					<input type="text"
+						placeholder="Search">
+					<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093658/search-200x200.png"
+						height="18"
+						alt="img2">
+				</div>
+				<div class="nav-links">
+					<ul class="nav-group">
+						<li class="nav-item">
+							<a href="#">
+								<i class="fas fa-home"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="">
+								<i class="fab fa-facebook-messenger"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="">
+								<i class="far fa-compass"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="">
+								<i class="far fa-heart"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div class="action">
+								<div class="profile"
+									onclick="menuToggle()">
+									<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+										alt="user Avatar">
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header> -->
 	
 	<!-- Code for Showing the Status -->
 	<main>
 		<div class="container">
 			<div class="col-9">
+				<div class="statuses">
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+								alt="img3">
+						</div>
+					</div>
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+								alt="img4">
+						</div>
+					</div>
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093241/g3-200x200.png"
+								alt="img5">
+						</div>
+					</div>
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+								alt="img6">
+						</div>
+					</div>
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+								alt="img7">
+						</div>
+					</div>
+					<div class="status">
+						<div class="image">
+							<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+								alt="img8">
+						</div>
+					</div>
+				</div>
+				
 			<!-- Code for viewing the Post -->
 				<div class="card">
 					<div class="top">
@@ -45,12 +149,15 @@
 								<div class="profile_img">
 									<div class="image">
 										<img src=
-"http://localhost:8080/camagru/images/img0.jpg"
-											alt="profile_pic">
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+											alt="img8">
 									</div>
 								</div>
 							</div>
-							<h3>Username here<br><span>Location</span></h3>
+							<h3>Ayush Agarwal
+								<br>
+								<span>Mumbai, India</span>
+						</h3>
 						</div>
 						<div>
 							<span class="dot">
@@ -116,9 +223,50 @@
 										fill-rule="evenodd">
 								</path>
 								</svg>
+								<svg aria-label="Share Post"
+									class="_8-yf5 "
+									color="#262626"
+									fill="#262626"
+									height="24"
+									role="img"
+									viewBox="0 0 48 48"
+									width="24">
+									<path
+										d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3
+										3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6
+										1 1.2 1.1h.2c.5 0 1-.3
+										1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2
+										6.1h35.5L18 18.7 5.2 6.1zm18.7
+										33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
+									</path>
+								</svg>
+							</div>
+							<div class="right">
+								<svg aria-label="Save"
+									class="_8-yf5 "
+									color="#262626"
+									fill="#262626"
+									height="24"
+									role="img"
+									viewBox="0 0 48 48"
+									width="24">
+															
+								<!-- Coordinate path -->
+									<path
+										d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6
+										47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7
+										3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4
+										1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8
+										0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6
+										1.4-.9 2.2-.9z">
+									</path>
+								</svg>
 							</div>
 						</div>
-						<a href="#"><p class="likes">203 likes</p></a>
+						<a href="#">
+							<p class="likes">203 likes</p>
+
+						</a>
 						<a href="#">
 							<p class="message">
 							<b>Raju Modi</b>
@@ -132,11 +280,11 @@
 							<h5 class="postTime">2 hours ago</h5>
 						</a>
 						<div class="addComments">
-							<!-- <div class="reaction">
+							<div class="reaction">
 								<h3>
 								<i class="far fa-smile"></i>
 								</h3>
-							</div> -->
+							</div>
 							<input type="text"
 								class="text"
 								placeholder="Add a comment...">
