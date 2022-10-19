@@ -1,26 +1,29 @@
 .clear {
-  clear: both;
+	clear: both;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: auto;
-  text-align: center;
+	/* font-family: Arial, Helvetica, sans-serif; */
+	font-family: -apple-system, system-ui, "Segoe UI", "Open Sans",
+		"Helvetica Neue", sans-serif;
+	margin: auto;
+	text-align: center;
+	background: #fafafa;
 }
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 nav {
-  overflow: hidden;
-  background-color: darkcyan;
+	overflow: hidden;
+	background-color: darkcyan;
 }
 .signature {
-  font-family: monospace;
-  text-align: right;
+	font-family: monospace;
+	text-align: right;
 }
 
 a:visited {
-  color: white;
+	color: white;
 }
 /*
 h1 {
@@ -34,52 +37,52 @@ h3 {
 } */
 
 .dropdown {
-  cursor: pointer;
-  float: left;
-  overflow: hidden;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  /* margin: 0; */
+	cursor: pointer;
+	float: left;
+	overflow: hidden;
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	/* margin: 0; */
 }
 
 .dropdown:hover {
-  background-color: rgb(28, 197, 197);
+	background-color: rgb(28, 197, 197);
 }
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  /* min-width: 160px; */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	/* min-width: 160px; */
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  /* text-decoration: none; */
-  display: block;
-  text-align: left;
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	/* text-decoration: none; */
+	display: block;
+	text-align: left;
 }
 
 .dropdown-content a:hover {
-  background-color: rgb(28, 197, 197);
+	background-color: rgb(28, 197, 197);
 }
 
 .dropbtn {
-  padding: 8px 16px;
-  border: 2px groove rgb(28, 197, 197);
-  border-radius: 8px;
-  margin-top: 4px;
-  margin-right: 4px;
+	padding: 8px 16px;
+	border: 2px groove rgb(28, 197, 197);
+	border-radius: 8px;
+	margin-top: 4px;
+	margin-right: 4px;
 }
