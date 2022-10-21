@@ -31,6 +31,7 @@ if (!isset($_SESSION['logged_user'])) {
             if ($validUser === true)
             {
                 $_SESSION['logged_user'] = $_POST['f_username'];
+                $_SESSION['logged_id'] = getUserId($_POST['f_username']);
                 header("Location: home.php");
             }
             else {
