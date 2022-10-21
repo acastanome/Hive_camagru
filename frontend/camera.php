@@ -7,7 +7,8 @@ if (isset($_SESSION['logged_user'])) {?>
 	<div class="container">
 		<div class="col-9">
 		<h4>Select a sticker<br>or</h4>
-		<button id="upload-photo">Upload a Photo</button>
+		<!-- <button id="upload-photo">Upload a Photo</button> -->
+		<input accept="image/*" type="file" class="dropbtn" id="upload_photo" name="upload">
 			<div class="card">
 					<div class="sticker-circle">
 						<div class="circle">

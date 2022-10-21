@@ -107,3 +107,37 @@ for (i = 0; i < stickers.length; i++) {
 // 	console.log(image_data_url);
 // 	console.log(stickers_data_url);
 // });
+
+//UPLOAD
+//https://www.youtube.com/watch?v=RvzWGElvr7w
+upload_photo.onchange = (event) => {
+	const [file] = upload_photo.files;
+	if (file) {
+		console.log(file.path);
+		// picture.src = URL.createObjectURL(file);
+		canvas.getContext("2d").drawImage(file, 0, 0, file.width, file.height);
+		// setTimeout(() => {
+		// 	if (picture.height < 400)
+		// 		alert(
+		// 			"Stickers may not show properly on images of this size. Choose a different image if you wish to add stickers."
+		// 		);
+		// 	if (picture.width < picture.height) {
+		// 		let maxHeight = 700;
+		// 		let maxWidth = 500;
+		// 		if (picture.width > maxWidth || picture.height > maxHeight) {
+		// 			let ratio = picture.width / picture.height;
+		// 			if (ratio > 1) {
+		// 				picture.width = maxWidth;
+		// 				picture.height = maxHeight / ratio;
+		// 			} else {
+		// 				picture.width = maxWidth * ratio;
+		// 				picture.height = maxHeight;
+		// 				alert(
+		// 					"Stickers may not show properly on images of this size. Choose a different image if you wish to add stickers."
+		// 				);
+		// 			}
+		// 		}
+		// 	}
+		// }, 50);
+	}
+};

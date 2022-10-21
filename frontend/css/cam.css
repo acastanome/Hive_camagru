@@ -181,6 +181,10 @@
 }
 /* TO HERE my col-3 */
 
+/* input[type="file"] {
+	display: none;
+} */
+
 /* @media screen and (max-width: 1000px) {
 	.col-9 {
 		width: 100%;
