@@ -64,8 +64,6 @@ function isValidUser($username, $psswd) {
         $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ?)");
         $sql->execute([$username]);
         $result = $sql->fetch();
-        //echo "<script>console.log('Debug Objects: " . $result['psswd'] . "' );</script>";
-        // $conn = null;
         if (!$result || !password_verify($psswd, $result['psswd'])) {
             return "Invalid username or password.";
         }
@@ -74,7 +72,6 @@ function isValidUser($username, $psswd) {
         $result = $sql->fetch();
         if ($result) {
             return true;
-            // return $result[0];
         }
         else {
             return "That account hasn't been activated.";
@@ -83,25 +80,6 @@ function isValidUser($username, $psswd) {
         echo "<br>" . $e->getMessage();
     }
 }
-// function isValidUser($username, $psswd) {
-//     $conn = connectPDODB();
-//     try {
-//         $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ?)");
-//         $sql->execute([$username]);
-//         $result = $sql->fetch();
-//         //echo "<script>console.log('Debug Objects: " . $result['psswd'] . "' );</script>";
-//         $conn = null;
-//         if ($result && password_verify($psswd, $result['psswd'])) {
-//             if ()
-//             return $result[0];
-//         }
-//         else {
-//             return "Invalid username or password.";
-//         }
-//     } catch(PDOException $e) {
-//         echo "<br>" . $e->getMessage();
-//     }
-// }
 
 function isActiveUser($username, $psswd) {
     $conn = connectPDODB();
@@ -123,16 +101,12 @@ function isActiveUser($username, $psswd) {
 function addUserToTable($username, $email, $psswd, $activationCode) {
     $conn = connectPDODB();
     $psswd = password_hash($psswd, PASSWORD_BCRYPT);
-    // $activationCode = bin2hex(random_bytes(10));
     try {
         $sql = $conn->prepare("INSERT INTO Users (`user_name`, `email`, psswd, activation_code)
         VALUES (?, ?, ?, ?)");
         $result = $sql->execute([$username, $email, $psswd, $activationCode]);
-        //NEW
-        // $result = $sql->fetchAll();
         $conn = null;
         echo "<script>console.log('Debug Objects res: " . $result . "' );</script>";
-        // echo "<script>console.log('Debug Objects sql: " . $sql . "' );</script>";
         if ($result) {
             return $result;
         }
@@ -144,7 +118,6 @@ function addUserToTable($username, $email, $psswd, $activationCode) {
 function createAccount($username, $email, $psswd) {
     $activationCode = bin2hex(random_bytes(10));
     $inserted = addUserToTable($username, $email, $psswd, $activationCode);
-    //can this crash if we dissable js and the user is not added to table (wrong input catch in backend), bunext funciton is called anyway?
     if ($inserted == 1) {
         return sendActivationEmail($email, $activationCode);
     }
