@@ -8,7 +8,8 @@ function createTableUsers($conn) {
         active_account BOOLEAN DEFAULT false,
         activation_code VARCHAR(255) NOT NULL,
         psswd VARCHAR(128) NOT NULL,
-        notifications BOOLEAN DEFAULT true)");
+        notifications BOOLEAN DEFAULT true,
+        `posts` INT UNSIGNED DEFAULT '0')");
         // profile_img_id INT UNSIGNED DEFAULT '0')");
     $sql->execute();
 }
