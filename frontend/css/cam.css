@@ -13,9 +13,58 @@
 	/* background-color: blue; */
 }
 
+.camera_container {
+	position: relative;
+	padding: 5%;
+	border-width: 2px;
+	border-style: double;
+	border-color: blue;
+}
+.camera_container .canvas {
+	/* position: absolute; */
+	/* margin-left: auto;
+	margin-right: auto; */
+	/* top: 0; */
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 100%;
+	border-width: 2px;
+	border-style: double;
+	border-color: red;
+	/* object-fit: contain; */
+	padding: 5%;
+	/* object-fit: cover; */
+	/*
+	margin: auto;
+	top: 0;
+	bottom: 0; */
+}
+
+#video {
+	max-width: 100%;
+	/* object-fit: contain; */
+	/* aspect-ratio: 4/3;
+	object-fit: contain; */
+	border-width: 2px;
+	border-style: double;
+	border-color: green;
+}
+/*
+#canvas {
+	width: 90%;
+	aspect-ratio: 4/3;
+	object-fit: contain;
+	image-rendering: crisp-edges;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: optimize-contrast;
+	-ms-interpolation-mode: nearest-neighbor;
+} */
+
 /* FROM HERE my col-9 */
 .col-9 {
-	/* could be named if width change to cont-25 or col-4?*/
 	width: 75%;
 	position: -webkit-sticky;
 	position: sticky;
@@ -37,7 +86,7 @@
 	padding: 10px 0px;
 }
 
-.sticker_circle {
+.sticker-circle {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -47,12 +96,13 @@
 	width: 50%;
 	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
 	padding: 2px;
+	margin: 2px;
 	/* margin-right: 8px; */
 	cursor: pointer;
 	/* background-color: rgb(255, 221, 0); */
 }
 
-.sticker_circle .circle {
+.sticker-circle .circle {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -66,7 +116,16 @@
 	/* background-color: white; */
 }
 
-.sticker_circle img {
+/* .sticker_circle img {
+	aspect-ratio: 1/1;
+	width: 80%; */
+/* height: 100%; */
+/* width: 30%;
+	height: 30%; */
+/* object-fit: cover; */
+/* background-color: rgb(0, 255, 204); */
+/* } */
+.sticker {
 	aspect-ratio: 1/1;
 	width: 80%;
 	/* height: 100%; */
@@ -101,36 +160,17 @@
 	padding: 10px 0px;
 }
 
-.sticker_circle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	overflow: hidden;
+/* .sticker_circle img {
 	aspect-ratio: 1/1;
-	width: 50%;
-	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
-	padding: 2px;
-	/* margin-right: 8px; */
-	cursor: pointer;
-	/* background-color: rgb(255, 221, 0); */
-}
+	width: 80%; */
+/* height: 100%; */
+/* width: 30%;
+	height: 30%; */
+/* object-fit: cover; */
+/* background-color: rgb(0, 255, 204); */
+/* } */
 
-.sticker_circle .circle {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	overflow: hidden;
-	/* cursor: pointer; */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 2px solid white;
-	/* background-color: white; */
-}
-
-.sticker_circle img {
+.col-3 img {
 	aspect-ratio: 1/1;
 	width: 80%;
 	/* height: 100%; */
