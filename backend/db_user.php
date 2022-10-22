@@ -140,4 +140,19 @@ function getUserId($username) {
         echo "<br>" . $e->getMessage();
     }
 }
+
+function getUsernameFromId($id) {
+    $conn = connectPDODB();
+    try {
+        $sql = $conn->prepare("SELECT `user_name` FROM Users WHERE (`user_id` = ?)");
+        $sql->execute([$id]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
 ?>
