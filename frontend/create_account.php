@@ -7,11 +7,11 @@ if (!isset($_SESSION['logged_user'])) {
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
     <form name="createForm" action="create_account.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
-        Username: <input type="text" name="f_username" required/>
+        <input type="text" name="f_username" placeholder="Username" required/>
         <br /><br />
-        Email: <input type="email" name="f_email" required/>
+        <input type="email" name="f_email" placeholder="Email" required/>
         <br /><br />
-        Password: <input type="password" name="f_passwd" value="" required/>
+        <input type="password" name="f_passwd" value="" placeholder="Password" required/>
         <br />
         <input style="margin-top: 15px;" type="submit" name="submit" value="CREATE USER"/>
         <br /><br />
