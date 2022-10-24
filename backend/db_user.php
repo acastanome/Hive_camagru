@@ -1,4 +1,4 @@
-<?php //check with backend
+<?php
 
 require_once 'db_connect.php';
 
@@ -87,7 +87,6 @@ function isActiveUser($username, $psswd) {
         $sql = $conn->prepare("SELECT * FROM Users WHERE (`user_name` = ? AND `active_account` = true)");
         $sql->execute([$username]);
         $result = $sql->fetch();
-        //echo "<script>console.log('Debug Objects: " . $result['psswd'] . "' );</script>";
         $conn = null;
         if ($result && password_verify($psswd, $result['psswd'])) {
             return $result[0];
@@ -97,7 +96,7 @@ function isActiveUser($username, $psswd) {
     }
 }
 
-//adds whatever info is passed, NO CHECKS here. Returns 1 if successfull, 0 otherwise
+//adds whatever info is passed. Returns 1 if successfull, 0 otherwise
 function addUserToTable($username, $email, $psswd, $activationCode) {
     $conn = connectPDODB();
     $psswd = password_hash($psswd, PASSWORD_BCRYPT);
@@ -106,7 +105,6 @@ function addUserToTable($username, $email, $psswd, $activationCode) {
         VALUES (?, ?, ?, ?)");
         $result = $sql->execute([$username, $email, $psswd, $activationCode]);
         $conn = null;
-        echo "<script>console.log('Debug Objects res: " . $result . "' );</script>";
         if ($result) {
             return $result;
         }
