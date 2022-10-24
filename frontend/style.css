@@ -199,6 +199,12 @@ main .container {
 	color: #4d4d4f;
 }
 
+.heart img {
+	cursor: pointer;
+	height: 2.5vh;
+	width: 2.5vh;
+}
+
 .message {
 	font-weight: 400;
 	margin-top: 5px;
