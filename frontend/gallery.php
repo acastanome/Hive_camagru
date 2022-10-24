@@ -1,29 +1,4 @@
 
-<!-- <div> -->
-      <?php
-      // if (!isset($_SESSION['logged_user']))
-      // {
-      ?>
-      <!-- <h3>Not logged in. <br>Display navbar (Home, log in) and all photos(cant comment or like)</h3> -->
-      <?php
-      // }
-      // else
-      // {
-      ?>
-      <!-- <h3>Display navbar (Home, camera, profile, log out) and all photos(can comment or like)</h3> -->
-      <?php
-      // }
-      // require_once '../backend/db_gallery.php';
-      // $gallery = getAllImages();
-      // if ($gallery) {
-      //       echo $gallery;
-      // }
-      // else {
-      //       echo "no images in gallery";
-      // }
-      ?>
-<!-- </div> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,16 +7,17 @@
 </head>
 <body>
 
-	<!-- Code for Showing the Status -->
 	<main>
 		<div class="container">
 			<div class="col-9">
+			<script type="text/javascript" src="js/js_like.js" charset="utf-8"></script>
 				<?php
 				require_once '../backend/db_user.php';
-				// echo "total posts: $total_posts and total pg: $total_pages";
+				require_once '../backend/db_likes.php';
 				foreach($images as $image) {
-					// echo "$image[user_id]";
-					// echo(getUsernameFromId($image['user_id']));
+					if (isset($_SESSION['logged_id'])) {
+						$userliked = checkUserLikedImg($_SESSION['logged_id'], $image['img_id']);
+					}
 				?>
 				<!-- Code for viewing the Post -->
 				<div class="card">
@@ -50,7 +26,7 @@
 							<div class="profilepic">
 								<div class="profile_img">
 									<div class="image">
-										<img src="<?php echo($image['img_path']); ?>"
+										<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>"
 											alt="profile_pic">
 									</div>
 								</div>
@@ -59,40 +35,31 @@
 						</div>
 					</div>
 					<div class="imgBx">
-						<img src="<?php echo($image['img_path']); ?>"
+						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>"
 							alt="post-image" class="cover">
 					</div>
 					<div class="bottom">
+						<?php if (isset($_SESSION['logged_id'])) {?>
 						<div class="actionBtns">
 							<div class="left">
-								<span class="heart"
-									onclick="addlike()">
-									<span>
-										<svg aria-label="Like"
-											color="#262626"
-											fill="#262626"
-											height="24"
-											role="img"
-											viewBox="0 0 48 48"
-											width="24">
-											<!-- Coordinate path -->
-											<path
-												d="M34.6 6.1c5.7 0 10.4 5.2 10.4
-												11.5 0 6.8-5.9 11-11.5 16S25 41.3 24
-												41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3
-												11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3
-												1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9
-												1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9
-												1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1
-												0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3
-												1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3
-												1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2
-												7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6
-												48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
-											</path>
-										</svg>
+								<?php if ($userliked != 0) { ?>
+									<span class="heart"
+									onclick="ajaxLike(<?php echo($image['img_id']);?>)">
+									
+										<img id="heart<?php echo($image['img_id']);?>" name="outline" src="http://localhost:8080/camagru/stickers/heart-full.png"
+											alt="heart">
 									</span>
-								</span>
+								<?php
+								} else {
+								?>
+									<span class="heart"
+									onclick="ajaxLike(<?php echo($image['img_id']);?>)">
+									<img id="heart<?php echo($image['img_id']);?>" name="full" src="http://localhost:8080/camagru/stickers/heart-outline.png"
+											alt="heart">
+									</span>
+								<?php
+								}
+								?>
 								<svg aria-label="Comment"
 									class="_8-yf5 "
 									color="#262626"
@@ -115,19 +82,19 @@
 								</path>
 								</svg>
 							</div>
-						</div>
+						</div><?php }?>
 						<!-- Adding number of like and name of people -->
-						<a href="#"><p class="likes"><?php echo($image['likes']); ?> likes</p></a>
-						<a href="#">
+						<a href="#"><p class="likes"><?php echo(htmlspecialchars($image['likes'])); ?> likes</p></a>
+						<!-- <a href="#">
 							<p class="message">
 							<b>Raju Modi</b>
 							</p>
+						</a> -->
+						<a href="#">
+							<h4 class="comments">View all <?php echo(htmlspecialchars($image['comments'])); ?> comments</h4>
 						</a>
 						<a href="#">
-							<h4 class="comments">View all <?php echo($image['comments']); ?> comments</h4>
-						</a>
-						<a href="#">
-							<h5 class="postTime"><?php echo($image['creation_time']); ?></h5>
+							<h5 class="postTime"><?php echo(htmlspecialchars($image['creation_time'])); ?></h5>
 						</a>
 						<div class="addComments">
 							<input type="text"
