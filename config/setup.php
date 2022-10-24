@@ -32,9 +32,9 @@ try {
 createTables($conn);
 
 //TEST PURPOSES ONLY FROM HERE
-$username = "testuser2";
-$email = "testemail2@gmail.com";
-$psswd = "testpass2!";
+$username = "testuser1";
+$email = "camagrutesting@proton.me";
+$psswd = "testpass1!";
 
 function selectOneQualifier($conn, $table, $col, $qualifier) {
     try {
