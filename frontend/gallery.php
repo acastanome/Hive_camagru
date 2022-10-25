@@ -36,7 +36,7 @@
 					</div>
 					<div class="imgBx">
 						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>"
-							alt="post-image" class="cover">
+							alt="post-image" class="gallery-img">
 					</div>
 					<div class="bottom">
 						<?php if (isset($_SESSION['logged_id'])) {?>
@@ -85,11 +85,6 @@
 						</div><?php }?>
 						<!-- Adding number of like and name of people -->
 						<a href="#"><p class="likes"><?php echo(htmlspecialchars($image['likes'])); ?> likes</p></a>
-						<!-- <a href="#">
-							<p class="message">
-							<b>Raju Modi</b>
-							</p>
-						</a> -->
 						<a href="#">
 							<h4 class="comments">View all <?php echo(htmlspecialchars($image['comments'])); ?> comments</h4>
 						</a>
@@ -97,10 +92,11 @@
 							<h5 class="postTime"><?php echo(htmlspecialchars($image['creation_time'])); ?></h5>
 						</a>
 						<div class="addComments">
-							<input type="text"
+							<input type="text" name="f_comment"
 								class="text"
 								placeholder="Add a comment...">
 							<a href="#">Post</a>
+							<!-- <a href="#" onclick="postComment()">Post</a> -->
 						</div>
 					</div>
 				</div>
