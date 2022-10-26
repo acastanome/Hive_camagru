@@ -8,15 +8,12 @@ body {
 	font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu,
 		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	background: #fafafa;
-	/* background: greenyellow; */
 }
-
 main {
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* background-color: blue; */
 }
 
 main .container {

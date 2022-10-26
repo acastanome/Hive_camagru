@@ -3,7 +3,6 @@
 }
 
 body {
-	/* font-family: Arial, Helvetica, sans-serif; */
 	font-family: -apple-system, system-ui, "Segoe UI", "Open Sans",
 		"Helvetica Neue", sans-serif;
 	margin: auto;
@@ -15,11 +14,18 @@ a {
 }
 nav {
 	overflow: hidden;
-	background-color: darkcyan;
+	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
+}
+footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	/* float: right; */
 }
 .signature {
 	font-family: monospace;
 	text-align: right;
+	margin: 1vh;
 }
 
 a:visited {
@@ -43,15 +49,14 @@ h3 {
 	font-size: 16px;
 	border: none;
 	outline: none;
-	color: white;
+	color: #fafafa;
 	padding: 14px 16px;
 	background-color: inherit;
 	font-family: inherit;
-	/* margin: 0; */
 }
 
 .dropdown:hover {
-	background-color: rgb(28, 197, 197);
+	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
 }
 .dropdown:hover .dropdown-content {
 	display: block;
@@ -61,13 +66,12 @@ h3 {
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
-	/* min-width: 160px; */
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
 
 .dropdown-content a {
-	float: none;
+	/* float: none; */
 	color: black;
 	padding: 12px 16px;
 	/* text-decoration: none; */
@@ -76,12 +80,13 @@ h3 {
 }
 
 .dropdown-content a:hover {
-	background-color: rgb(28, 197, 197);
+	color: #fafafa;
+	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
 }
 
 .dropbtn {
 	padding: 8px 16px;
-	border: 2px groove rgb(28, 197, 197);
+	border: 2px groove #fafafa;
 	border-radius: 8px;
 	margin-top: 4px;
 	margin-right: 4px;

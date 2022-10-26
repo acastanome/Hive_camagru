@@ -4,74 +4,74 @@
 	box-sizing: border-box;
 }
 
+body {
+	min-height: 100vh !important;
+}
 .container {
-	width: 100%;
-	height: 100vh;
+	width: 90%;
 	display: flex;
-	/* flex-direction: column; */
-	/* align-items: center; */
 	justify-content: center;
-	padding-right: 2%;
-	/* background-color: blue; */
+	margin: auto;
+	margin-top: 15px;
 }
 
 .camera_container {
 	position: relative;
-	padding: 5%;
-	border-width: 2px;
-	border-style: double;
-	border-color: blue;
 }
+
+#camera_buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: auto;
+	margin: 5px;
+}
+
 .camera_container .canvas {
-	/* position: absolute; */
-	/* margin-left: auto;
-	margin-right: auto; */
-	/* top: 0; */
 	position: absolute;
 	text-align: center;
 	left: 50%;
 	transform: translateX(-50%);
 	max-width: 100%;
-	border-width: 2px;
-	border-style: double;
-	border-color: red;
-	/* object-fit: contain; */
-	padding: 5%;
-	/* object-fit: cover; */
-	/*
-	margin: auto;
-	top: 0;
-	bottom: 0; */
 }
 
 #video {
 	max-width: 100%;
-	/* object-fit: contain; */
-	/* aspect-ratio: 4/3;
-	object-fit: contain; */
-	border-width: 2px;
-	border-style: double;
-	border-color: green;
+	height: fit-content;
+	margin: 5px;
 }
-/*
-#canvas {
-	width: 90%;
-	aspect-ratio: 4/3;
-	object-fit: contain;
-	image-rendering: crisp-edges;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: optimize-contrast;
-	-ms-interpolation-mode: nearest-neighbor;
-} */
+
+.myBtns {
+	cursor: pointer;
+	padding: 1px 2px;
+	border: double 3px transparent;
+	border-radius: 8px;
+	background-image: linear-gradient(white, white),
+		radial-gradient(circle at top left, rgb(43, 3, 69), rgb(15, 131, 180));
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+	font-family: inherit;
+	font-size: 15px;
+	color: rgb(43, 3, 69);
+	margin: 3px 5px;
+}
+
+.myBtns:hover {
+	background-image: radial-gradient(
+		circle at top left,
+		rgb(43, 3, 69),
+		rgb(15, 131, 180)
+	);
+	color: white;
+}
 
 /* FROM HERE my col-9 */
 .col-9 {
 	width: 75%;
+	max-width: 665px;
 	position: -webkit-sticky;
 	position: sticky;
-	/* top: 90px; */
-	padding: 10px 0px;
+	margin: 10px;
 }
 
 .col-9 h4 {
@@ -80,12 +80,11 @@
 
 .col-9 .card {
 	position: relative;
-	width: 100%;
-	/* min-height: 400px; */
+	max-width: 460px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px 0px;
+	margin: auto;
 }
 
 .sticker-circle {
@@ -99,9 +98,7 @@
 	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
 	padding: 2px;
 	margin: 2px;
-	/* margin-right: 8px; */
 	cursor: pointer;
-	/* background-color: rgb(255, 221, 0); */
 }
 
 .sticker-circle .circle {
@@ -110,41 +107,24 @@
 	height: 100%;
 	border-radius: 50%;
 	overflow: hidden;
-	/* cursor: pointer; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border: 2px solid white;
-	/* background-color: white; */
 }
 
-/* .sticker_circle img {
-	aspect-ratio: 1/1;
-	width: 80%; */
-/* height: 100%; */
-/* width: 30%;
-	height: 30%; */
-/* object-fit: cover; */
-/* background-color: rgb(0, 255, 204); */
-/* } */
 .sticker {
 	aspect-ratio: 1/1;
 	width: 80%;
-	/* height: 100%; */
-	/* width: 30%;
-	height: 30%; */
 	object-fit: cover;
-	/* background-color: rgb(0, 255, 204); */
 }
 /* TO HERE my col-9*/
 
 /* FROM HERE my col-3 */
 .col-3 {
-	/* could be named if width change to cont-25 or col-4?*/
 	width: 25%;
 	position: -webkit-sticky;
 	position: sticky;
-	/* top: 90px; */
 	padding: 10px 0px;
 }
 
@@ -155,37 +135,18 @@
 .col-3 .card {
 	position: relative;
 	width: 100%;
-	/* min-height: 400px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 10px 0px;
 }
 
-/* .sticker_circle img {
-	aspect-ratio: 1/1;
-	width: 80%; */
-/* height: 100%; */
-/* width: 30%;
-	height: 30%; */
-/* object-fit: cover; */
-/* background-color: rgb(0, 255, 204); */
-/* } */
-
 .col-3 img {
 	aspect-ratio: 1/1;
 	width: 80%;
-	/* height: 100%; */
-	/* width: 30%;
-	height: 30%; */
 	object-fit: cover;
-	/* background-color: rgb(0, 255, 204); */
 }
 /* TO HERE my col-3 */
-
-/* input[type="file"] {
-	display: none;
-} */
 
 /* @media screen and (max-width: 1000px) {
 	.col-9 {
@@ -197,16 +158,34 @@
 		display: none;
 	}
 }
-
+*/
 @media screen and (max-width: 600px) {
-	.col-9 {
+	/* .col-9 {
 		margin-top: 4px;
 		min-width: 100%;
-	}
+	} */
 
-	.col-9 .card {
+	/* .col-9 .card {
 		margin-bottom: 0px;
 		width: 100%;
 		border: none;
+	} */
+
+	.container {
+		margin: 0;
+		justify-content: center;
+		margin: auto;
 	}
-} */
+	.myBtns {
+		font-size: small;
+	}
+	#camera_buttons {
+		margin: 0;
+	}
+	h4 {
+		font-size: xx-small;
+	}
+	h2 {
+		font-size: medium;
+	}
+}
