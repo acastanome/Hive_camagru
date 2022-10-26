@@ -1,17 +1,3 @@
-// let canvas = document.querySelector("#canvas");
-// let canvas_stickers = document.querySelector("#canvas_stickers");
-// let stickers = document.querySelectorAll(".sticker");
-
-// let stickers_file = document.querySelector("#stickers_file");
-
-for (i = 0; i < stickers.length; i++) {
-	stickers[i].addEventListener("click", (event) => {
-		addStickerToCanvas(event.target.id, canvas_stickers);
-		// capture_button.disabled = false;
-		// console.log(stickers_file.value);
-	});
-}
-
 let imgInput = document.getElementById("imageInput");
 
 imgInput.addEventListener("change", function (e) {
@@ -21,7 +7,7 @@ imgInput.addEventListener("change", function (e) {
 		var reader = new FileReader();
 		reader.readAsDataURL(imageFile);
 		reader.onloadend = function (e) {
-			var myImage = new Image(); // Creates image object
+			var myImage = new Image();
 			myImage.src = e.target.result; // Assigns converted image to image object
 			myImage.onload = function (ev) {
 				var MAX_WIDTH = 320;
@@ -29,7 +15,7 @@ imgInput.addEventListener("change", function (e) {
 				var width = myImage.width;
 				var height = myImage.height;
 
-				// Add the resizing logic
+				// Resizing logic
 				if (width > height) {
 					if (width > MAX_WIDTH) {
 						height *= MAX_WIDTH / width;
@@ -56,7 +42,9 @@ imgInput.addEventListener("change", function (e) {
 				canvas
 					.getContext("2d")
 					.drawImage(myImage, start_x, start_y, width, height);
-				let imgData = canvas.toDataURL("image/jpeg", 0.75); // Assigns image base64 string in jpeg format to a variable
+				let imgUrl = canvas.toDataURL("image/jpeg", 0.75); // Assigns image base64 string in jpeg format to a variable
+				webcam_file.value = imgUrl;
+				uploading.value = "1";
 			};
 		};
 	}

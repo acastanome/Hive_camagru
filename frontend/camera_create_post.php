@@ -31,14 +31,28 @@ if (isset($_SESSION['logged_user']) && isset($_SESSION['logged_id'])) {
              </script>
              <?php
         }
-    }
+    } else if (isset($_POST['post_photo']) && !empty($_POST['webcam_file']) && empty($_POST['stickers_file']) && !empty($_POST['uploading'])) {
+        $webcam_file = $_POST['webcam_file'];
+        $image_name = strval(time()) . ".jpg";
 
-    // if (isset($_POST['post_photo']) && isset($_FILES['file']['name']) && !empty($_FILES['file']['name'])) {
-    //     // upload_form['file'].files[0];
-    //     echo "whaaaaat" . $_FILES['file']['name'] . "full path:" . $_FILES['file']['full_path'] . "tmp_name:" . $_FILES['file']['tmp_name'];
-    //     // print_r(array_keys( $_FILES['file']));
-    //     //name [1] => full_path [2] => type [3] => tmp_name [4] => error [5] => size
-    // }
+	    list($type, $url_webcam) = explode(';', $webcam_file);
+	    list(, $url_webcam) = explode(',', $url_webcam); 
+	    $cam = imagecreatefromstring(base64_decode($url_webcam));
+
+        if ($cam) {
+            imagepng($cam, "../images/".$image_name);
+            $path = "http://localhost:8080/camagru/images/". $image_name;
+            addImgToTable($_SESSION['logged_id'], $image_name, $path);
+        }
+        else {
+             ?>
+             <script type="text/javascript">
+                 console.log("Base64 value isn't a valid image.");
+             </script>
+             <?php
+        }
+    }
+    header("Location: add.php");
 } else {
     header("Location: login.php");
 }
