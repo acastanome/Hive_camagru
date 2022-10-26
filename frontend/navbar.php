@@ -7,7 +7,7 @@
   if (isset($_SESSION['logged_user']))
   {
   ?>
-  <div class="dropdown" onclick="window.location='camera.php';">
+  <div class="dropdown" onclick="window.location='add.php';">
     Camera
   </div>
 
