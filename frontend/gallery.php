@@ -1,11 +1,6 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
 	<link rel="stylesheet"
 		href="style.css">
-</head>
-<body>
 
 	<main>
 		<div class="container">
@@ -106,5 +101,3 @@
 			</div>
 		</div>
 	</main>
-</body>
-</html>

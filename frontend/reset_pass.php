@@ -64,6 +64,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
     }
 }
 ?>
-</body>
 
 <?php require_once 'footer.php';?>
+</body>
+</html>

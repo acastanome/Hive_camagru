@@ -30,6 +30,7 @@ if($total_posts == 0) {
     require_once 'gallery.php';
 }
 ?>
-</body>
 
 <?php require_once 'footer.php'; ?>
+</body>
+</html>

@@ -34,6 +34,7 @@ if (!isset($_SESSION['logged_user'])) {
     header("Location: home.php");
 }
 ?>
-</body>
 
 <?php require_once 'footer.php';?>
+</body>
+</html>
