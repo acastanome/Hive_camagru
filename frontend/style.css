@@ -122,7 +122,7 @@ main .container {
 	overflow: hidden;
 	width: 30px;
 	height: 30px;
-	background: linear-gradient(to right, red, orange);
+	background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180));
 	padding: 2px;
 	margin-right: 8px;
 	cursor: pointer;
@@ -197,6 +197,33 @@ main .container {
 .actionBtns .left svg {
 	margin-right: 8px;
 }
+.actionBtns .right svg {
+	margin-left: 8px;
+}
+
+.myBtns {
+	cursor: pointer;
+	padding: 1px 2px;
+	border: double 3px transparent;
+	border-radius: 8px;
+	background-image: linear-gradient(white, white),
+		radial-gradient(circle at top left, rgb(43, 3, 69), rgb(15, 131, 180));
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+	font-family: inherit;
+	font-size: 15px;
+	color: rgb(43, 3, 69);
+	margin: 3px 5px;
+}
+
+.myBtns:hover {
+	background-image: radial-gradient(
+		circle at top left,
+		rgb(43, 3, 69),
+		rgb(15, 131, 180)
+	);
+	color: white;
+}
 
 .likes {
 	font-weight: 500;
@@ -209,6 +236,18 @@ main .container {
 	cursor: pointer;
 	height: 2.5vh;
 	width: 2.5vh;
+}
+.comment img {
+	height: 2.5vh;
+	width: 2.5vh;
+}
+
+.comment p {
+	/* font-weight: 500; */
+	margin-top: 5px;
+	font-size: 14px;
+	color: #4d4d4f;
+	text-align: left;
 }
 
 .message {
@@ -269,6 +308,9 @@ input.text::placeholder {
 	text-transform: uppercase;
 }
 
+.comment_form {
+	width: 100%;
+}
 a {
 	text-decoration: none;
 }
@@ -307,5 +349,8 @@ a {
 		width: 100%;
 		/* min-height: 400px; */
 		margin: 10px 0 15px;
+	}
+	.likes {
+		font-size: smaller;
 	}
 }
