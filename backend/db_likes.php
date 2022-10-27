@@ -56,13 +56,4 @@ function unlikeImg($userId, $imgId) {
         echo "<br>" . $e->getMessage();
     }
 }
-
-function updateLiked($img_id, $to) {
-	if ($to = 'full' && checkUserLikedImg($_SESSION['logged_id'], $img_id)==0){
-        likeImg($_SESSION['logged_id'], $img_id);
-	} 
-    if ($to = 'outline' && checkUserLikedImg($_SESSION['logged_id'], $img_id)==1){
-        unlikeImg($_SESSION['logged_id'], $img_id);
-	}
-}
 ?>
