@@ -15,7 +15,7 @@
     Log out
   </button>
   
-  <div class="dropdown" style="float: right;" onclick="window.location='profile.php';">My profile</div>
+  <div class="dropdown" style="float: right;" onclick="window.location='profile.php';"><?php echo(htmlspecialchars($_SESSION['logged_user'])); ?></div>
 
   <?php
   }
