@@ -1,9 +1,12 @@
 <?php require_once 'head.php';?>
 <body>
-<?php require_once 'navbar.php';?>
+<?php require_once 'navbar.php';
+require_once '../backend/db_gallery.php';
+?>
 	<link rel="stylesheet" href="css/cam.css">
 <?php
-if (isset($_SESSION['logged_user'])) {?>
+if (isset($_SESSION['logged_user'])) {
+	$images = fetch_imagesByUserId($_SESSION['logged_id']);?>
 	<div class="container">
 		<div class="col-9">
 			<div>
@@ -69,22 +72,19 @@ if (isset($_SESSION['logged_user'])) {?>
 
 		<div class="col-3">
 			<h4 style="margin: 5px; color: rgb(43, 3, 69);">Previews</h4>
+			<?php
+			foreach($images as $image) {
+					?>
 			<div class="card">
 				<div class="sticker-circle">
 					<div class="circle">
-						<img src=
-"http://localhost:8080/camagru/images/img0.jpg" alt="img0">
+						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>" alt="img">
 					</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="sticker-circle">
-					<div class="circle">
-						<img src=
-"http://localhost:8080/camagru/images/img0.jpg" alt="cat-box.png">
-					</div>
-				</div>
-			</div>
+			<?php
+			}
+			?>
 		</div>
 
 	</div>
