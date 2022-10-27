@@ -10,8 +10,12 @@ if (isset($_POST['comment'])){
 	if ($comment = 'like'){
         if (commentImg($_SESSION['logged_id'], $img_id, $commentText)) {
             $usercommented = 1;
-            if (getNotifications($img_id) == 1) {
-                sendNotificationEmail(getEmailFromId($img_id));
+            $userToNotify = getUserIdFromImageId($img_id);
+            if (getNotifications($userToNotify) == 1) {
+                echo "notifications on";
+                sendNotificationEmail(getEmailFromId($userToNotify));
+            } else {
+                echo "notifications off";
             }
         }
 	}
