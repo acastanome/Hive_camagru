@@ -2,8 +2,9 @@
 
 <body>
 <?php
-   require_once 'navbar.php';
-
+   require_once 'navbar.php'; ?>
+   <div class="fuckingfuck">
+   <?php
    if(!empty($_GET["activation_code"])) {
       require_once '../backend/db_user.php';
       $code = htmlspecialchars($_GET["activation_code"]);
@@ -25,7 +26,7 @@
       echo "Oh no, there is no activation code. You trickster!";
    }
  ?>
-
+</div>
 <?php require_once 'footer.php';?>
 </body>
 </html>

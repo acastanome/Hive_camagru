@@ -4,6 +4,7 @@
 <?php
 if (isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
+    <div class="fuckingfuck">
     <form name="modifyForm" action="profile.php" method="POST" style="padding-top: 20%">
         <input type="text" name="f_username" placeholder="New username" value=""/>
         <br /><br />
@@ -60,7 +61,7 @@ if (isset($_SESSION['logged_user'])) {
     header("Location: login.php");
 }
 ?>
-
+</div>
 <?php require_once 'footer.php';?>
 </body>
 </html>

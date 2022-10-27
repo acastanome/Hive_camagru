@@ -4,6 +4,7 @@
 <?php
 if (!isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
+    <div class="fuckingfuck">
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
     <form name="createForm" action="create_account.php" onsubmit="return validateCreateForm(event)" method="POST" style="padding-top: 20%">
@@ -29,7 +30,9 @@ if (!isset($_SESSION['logged_user'])) {
         else {
             echo createAccount($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
         }
-    }
+    } ?>
+    </div>
+    <?php
 } else {
     header("Location: home.php");
 }

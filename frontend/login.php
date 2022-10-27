@@ -4,6 +4,7 @@
 <?php
 if (!isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
+    <div class="fuckingfuck">
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
     <form name="loginForm" action="login.php" onsubmit="return validateLoginForm(event)" method="POST" style="padding-top: 20%">
@@ -38,7 +39,8 @@ if (!isset($_SESSION['logged_user'])) {
                 echo $validUser;
             }
         }
-    }
+    } ?>
+    </div> <?php
 } else {
     header("Location: home.php");
 }

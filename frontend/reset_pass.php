@@ -2,8 +2,10 @@
 
 <body>
 <?php
-require_once 'navbar.php';
+require_once 'navbar.php'; ?>
 
+<div class="fuckingfuck">
+    <?php
 if (!empty($_GET["reset_code"])) {// echo "There is a reset_code";
     // $code = htmlspecialchars($_GET["reset_code"]);
 ?>
@@ -64,7 +66,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
     }
 }
 ?>
-
+</div>
 <?php require_once 'footer.php';?>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <body>
 <?php require_once 'navbar.php'; ?>
 
+<div class="fuckingfuck">
 <?php
 require_once '../backend/db_gallery.php';
 $posts_per_page = 5;
@@ -30,7 +31,7 @@ if($total_posts == 0) {
     require_once 'gallery.php';
 }
 ?>
-
+</div>
 <?php require_once 'footer.php'; ?>
 </body>
 </html>
