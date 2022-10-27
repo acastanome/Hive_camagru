@@ -1,21 +1,6 @@
 <?php
 require_once 'db_connect.php';
 
-// function getLikesFromImageId($imgId) {
-//     $conn = connectPDODB();
-//     try {
-//         $sql = $conn->prepare("SELECT `likes` FROM Images WHERE (`img_id` = ?)");
-//         $sql->execute([$imgId]);
-//         $result = $sql->fetch();
-//         $conn = null;
-//         if ($result) {
-//             return $result[0];
-//         }
-//     } catch(PDOException $e) {
-//         echo "<br>" . $e->getMessage();
-//     }
-// }
-
 //returns 1 or 0, depending if that user already commented that img or not
 function checkUserCommentedImg($userId, $imgId) {
     $conn = connectPDODB();
@@ -56,6 +41,21 @@ function fetch_comments($imgId) {
       } else {return "0";}
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
+    }
+}
+
+function getUserIdFromImageId($imgId) {
+    $conn = connectPDODB();
+    try {
+        $sql = $conn->prepare("SELECT `user_id` FROM Images WHERE (`img_id` = ?)");
+        $sql->execute([$imgId]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
     }
 }
 
