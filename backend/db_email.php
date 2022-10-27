@@ -29,4 +29,33 @@ function sendActivationEmail($email, $activationCode) {
     }
 }
 
+function getEmailFromId($id) {
+    $conn = connectPDODB();
+    try {
+        $sql = $conn->prepare("SELECT `email` FROM Users WHERE (`user_id` = ?)");
+        $sql->execute([$id]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
+
+function sendNotificationEmail($email) {
+    $actual_link = "http://localhost:8080/camagru/frontend/home.php";
+    $toEmail = $email;
+    $subject = "New comment!";
+    $content = "You have received a new comment! Check who, what, where: " . $actual_link . ".";
+    if(mail($toEmail, $subject, $content)) {
+        return true;
+    }
+    else {
+        deleteUserSimple($email);
+        return "Problem in notification email.";
+    }
+}
+
 ?>
