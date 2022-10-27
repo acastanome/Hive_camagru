@@ -4,7 +4,6 @@
 <?php
 if (isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
-    <!-- <form name="modifyForm" action="modify_account.php" method="POST" style="padding-top: 20%"> -->
     <form name="modifyForm" action="profile.php" method="POST" style="padding-top: 20%">
         <input type="text" name="f_username" placeholder="New username" value=""/>
         <br /><br />
@@ -27,17 +26,6 @@ if (isset($_SESSION['logged_user'])) {
         } else {
             updateNotifications($username, "0");
         }
-        if (isset($_POST['f_username']) && !empty($_POST['f_username'])) {
-            $validInput = checkUsername($_POST['f_username']);
-            if ($validInput !== true) {
-                echo $validInput;
-            } else if (isUsernameTaken($_POST['f_username'])) {
-                echo "That username is already taken.";
-            } else {
-                changeUsername($username, $_POST['f_username']);
-                $_SESSION['logged_user'] = $_POST['f_username'];
-            }
-        }
         if (isset($_POST['f_email']) && !empty($_POST['f_email'])) {
             $validInput = checkEmail($_POST['f_email']);
             if ($validInput !== true) {
@@ -54,6 +42,17 @@ if (isset($_SESSION['logged_user'])) {
                 echo $validInput;
             } else {
                 changePasswd($username, $_POST['f_passwd']);
+            }
+        }
+        if (isset($_POST['f_username']) && !empty($_POST['f_username'])) {
+            $validInput = checkUsername($_POST['f_username']);
+            if ($validInput !== true) {
+                echo $validInput;
+            } else if (isUsernameTaken($_POST['f_username'])) {
+                echo "That username is already taken.";
+            } else {
+                changeUsername($username, $_POST['f_username']);
+                $_SESSION['logged_user'] = $_POST['f_username'];
             }
         }
     }
