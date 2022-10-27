@@ -58,5 +58,17 @@ function fetch_images(int $first, int $amount) {
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
     }
-  }
+}
+
+function fetch_imagesByUserId($id) {
+    $conn = connectPDODB();
+    try {
+      $sql = $conn->prepare("SELECT * FROM `Images` WHERE (`user_id` = ?)");
+      $sql->execute([$id]);
+      $result = $sql->fetchAll();
+      return $result;
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+}
 ?>
