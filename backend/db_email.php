@@ -7,9 +7,6 @@ function deleteUserSimple($email) {
     try {
         $sql = $conn->prepare("DELETE LOW_PRIORITY FROM Users WHERE (`email` = ?)");
         $result = $sql->execute([$email]);
-        // if ($result) {
-        //     return $result;
-        // }
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
     }
