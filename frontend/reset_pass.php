@@ -56,6 +56,9 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
             $sql->execute([$newpass, $code]);
             $result = $sql->rowCount();
             if(!empty($result)) {
+                $newCode = bin2hex(random_bytes(10));
+                $sql = $conn->prepare("UPDATE `Users` SET `activation_code` = ? WHERE (`activation_code` = ?)");
+                $sql->execute([$newCode, $code]);
                 echo "Your password has been reset!";
             } else {
                 echo "Problem in password reset.";
