@@ -40,7 +40,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
     $input = htmlspecialchars($_POST['f_input']);
     $uid = getUserIdFromUsernameOrEmail($input);
     if (!$uid) {
-        echo "Couldn't find a match with that input.";
+        echo "Problem in password reset.";
     }
     else {
         echo sendResetEmail($uid);
@@ -61,7 +61,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
                 $sql->execute([$newCode, $code]);
                 echo "Your password has been reset!";
             } else {
-                echo "Problem in password reset.";
+                echo "Problem in password reset. Please try again";
             }
         } catch(PDOException $e) {
             echo "<br>" . $e->getMessage();
