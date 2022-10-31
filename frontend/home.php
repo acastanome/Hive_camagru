@@ -3,7 +3,7 @@
 <body>
 <?php require_once 'navbar.php'; ?>
 
-<div class="fuckingfuck">
+<div class="bodyContainer">
 <?php
 require_once '../backend/db_gallery.php';
 $posts_per_page = 5;
@@ -19,16 +19,28 @@ if($total_posts == 0) {
 } else {
     if (!isset($_GET['page'])) {
         $page = 1;
+        $prev_page = 1;
+        $next_page = 2;
     } else {
-        if ($_GET['page'] < 1 || $_GET['page'] > $number_of_pages) {
+        if ($_GET['page'] < 1 || $_GET['page'] > $total_pages) {
             $page = 1;
+            $prev_page = 1;
+            $next_page = 2;
         } else {
             $page = $_GET['page'];
+            $prev_page = $page - 1;
+            $next_page = $page + 1;
         }
     }
 
     $images = fetch_images((($page - 1) * $posts_per_page), $posts_per_page);
-    require_once 'gallery.php';
+    require_once 'gallery.php'; ?>
+    <div class="pagination">
+        <a class="arrows" style="color: black;"<?php if($page > 1){echo "href='http://localhost:8080/camagru/frontend/home.php?page=$prev_page'";} ?>> ⬅ </a>&nbsp&nbsp&nbsp&nbsp&nbsp
+            <?php echo $page; ?>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a class="arrows" style="color: black;" <?php if($page < $total_pages){echo "href='http://localhost:8080/camagru/frontend/home.php?page=$next_page'";} ?>> ➡ </a>
+    </div>
+    <?php
 }
 ?>
 </div>
