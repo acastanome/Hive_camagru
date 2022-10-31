@@ -55,7 +55,7 @@ function sendResetEmail($uid) {
     $activationCode = getActivationCodeFromUserId($uid);
     // echo "PROBLEM $activationCode";
 
-    $actual_link = "http://localhost:8080/camagru_git/frontend/reset_pass.php?reset_code=" . $activationCode;
+    $actual_link = "http://localhost:8080/camagru/frontend/reset_pass.php?reset_code=" . $activationCode;
     $toEmail = getEmailFromUserId($uid);
     $subject = "User Password Reset Email";
     $content = "Click this link: " . $actual_link . " to reset your password.";
