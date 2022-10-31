@@ -4,10 +4,9 @@
 <?php
 require_once 'navbar.php'; ?>
 
-<div class="fuckingfuck">
+<div class="bodyContainer">
     <?php
-if (!empty($_GET["reset_code"])) {// echo "There is a reset_code";
-    // $code = htmlspecialchars($_GET["reset_code"]);
+if (!empty($_GET["reset_code"])) {
 ?>
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
@@ -21,7 +20,7 @@ if (!empty($_GET["reset_code"])) {// echo "There is a reset_code";
     </form>
 
 <?php
-} else {//there is no reset_code
+} else {
 ?>
     <script type="text/javascript" src="js/js_user.js" charset="utf-8"></script>
 
@@ -36,7 +35,7 @@ if (!empty($_GET["reset_code"])) {// echo "There is a reset_code";
     <?php
 }
 require_once '../backend/db_reset.php';
-if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
+if (isset($_POST['submit']) && isset($_POST['f_input'])) {
     $input = htmlspecialchars($_POST['f_input']);
     $uid = getUserIdFromUsernameOrEmail($input);
     if (!$uid) {
@@ -45,7 +44,7 @@ if (isset($_POST['submit']) && isset($_POST['f_input'])) {//send email
     else {
         echo sendResetEmail($uid);
     }
-} else {//set newpass
+} else {
     if (isset($_POST['submit']) && isset($_POST['f_code'])) {
         $code = htmlspecialchars($_POST['f_code']);
         $newpass = password_hash(htmlspecialchars($_POST['f_newpass']), PASSWORD_BCRYPT);
