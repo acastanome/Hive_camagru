@@ -64,6 +64,13 @@ body {
 	);
 	color: white;
 }
+.myBtns:disabled {
+	background-image: linear-gradient(white, white),
+		radial-gradient(circle at top left, rgb(69, 3, 26),
+		rgb(180, 15, 92));
+		color: rgb(180, 15, 92);
+	cursor: default;
+}
 
 /* FROM HERE my col-9 */
 .col-9 {
