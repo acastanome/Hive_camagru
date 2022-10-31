@@ -3,7 +3,7 @@
 <body>
 <?php
    require_once 'navbar.php'; ?>
-   <div class="fuckingfuck">
+   <div class="bodyContainer">
    <?php
    if(!empty($_GET["activation_code"])) {
       require_once '../backend/db_user.php';
