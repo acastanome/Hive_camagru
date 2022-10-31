@@ -19,7 +19,7 @@ if (!isset($_SESSION['logged_user'])) {
         <a href="login.php" style="background-color:lightgrey; color: black; border: solid #9d969d 1px; border-radius: 2px;">Or click here to log in</a>
     </form>
 
-    <?php //check with backend
+    <?php
     require_once '../backend/db_user.php';
     require_once '../backend/db_email.php';
     if (isset($_POST['submit'])) {
@@ -28,7 +28,7 @@ if (!isset($_SESSION['logged_user'])) {
             echo $validInput;
         }
         else {
-            echo createAccount($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']);
+            echo htmlspecialchars(createAccount($_POST['f_username'], $_POST['f_email'], $_POST['f_passwd']));
         }
     } ?>
     </div>
