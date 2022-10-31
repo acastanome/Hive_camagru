@@ -76,12 +76,14 @@ if (isset($_SESSION['logged_user'])) {
 			foreach($images as $image) {
 					?>
 			<div class="card">
-				<div class="sticker-circle">
-					<div class="circle">
-						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>" alt="img" onclick="postDelete(<?php echo($image['img_id']);?>)">
-						
+			<form action="delete.php" method="post" class="remove-picture-form">
+				<button class="remove-img-btn" type="submit" name="delete_image" onClick="return confirmDelete()">
+					<div class="preview">
+						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>" alt="img" id="preview<?php echo($image['img_id']);?>" name="preview<?php echo($image['img_id']);?>">
+						<input class="delete_image_input" type="hidden" name="delete_image_id" value="<?php echo($image['img_id']);?>">
 					</div>
-				</div>
+				</button>
+			</form>
 			</div>
 			<?php
 			}
