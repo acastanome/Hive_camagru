@@ -18,7 +18,7 @@ function sendActivationEmail($email, $activationCode) {
     $subject = "User Registration Activation Email";
     $content = "Click this link: " . $actual_link . " to activate your account.";
     if(mail($toEmail, $subject, $content)) {
-        return nl2br("Registration has been successfull!\nTo activate your account click the link sent to: " . $toEmail);
+        return nl2br("Registration has been successfull! To activate your account click the link sent to: " . $toEmail);
     }
     else {
         deleteUserSimple($email);
