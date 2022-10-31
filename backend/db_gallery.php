@@ -1,22 +1,7 @@
-<?php //check with backend
+<?php
 
 require_once 'db_connect.php';
 
-// function getAllImages() {
-//     $conn = connectPDODB();
-//     try {
-//         $sql = $conn->prepare("SELECT * FROM `Images`");
-//         $sql->execute();
-//         $result = $sql->fetch();
-//         $conn = null;
-//         return $result;//[0] would return userid but creates a warning with apache
-//     } catch(PDOException $e) {
-//         echo "<br>" . $e->getMessage();
-//         return false;
-//     }
-// }
-
-//TODO check is photo in DB already. save photo to folder let path . name;
 function addImgToTable($userId, $imgName, $imgPath) {
     $conn = connectPDODB();
     try {
@@ -90,13 +75,14 @@ function userOwnsImage($userId, $imgId) {
 function deletePost($imgId) {
     $conn = connectPDODB();
     try {
-        // $sql = $conn->prepare("DELETE LOW_PRIORITY FROM Comments WHERE (`img_id` = ?)");
-        $sql = $conn->prepare("DELETE `Comments`,`Likes` FROM `Comments` OUTER JOIN `Likes` ON `Likes`.img_id = `Comments`.img_id WHERE `Likes`.img_id = ?");
+        $sql = $conn->prepare("DELETE FROM Comments WHERE (`img_id` = ?)");
         $sql->execute([$imgId]);
-        $sql = $conn->prepare("DELETE LOW_PRIORITY FROM `Images` WHERE (img_id = ?)");
+        $sql = $conn->prepare("DELETE FROM Likes WHERE (`img_id` = ?)");
         $sql->execute([$imgId]);
-        $sql = $conn->prepare("UPDATE `Users` SET `posts` = (`posts`-1) WHERE `img_id` = ?");
+        $sql = $conn->prepare("DELETE FROM `Images` WHERE (img_id = ?)");
         $sql->execute([$imgId]);
+        $sql = $conn->prepare("UPDATE `Users` SET `posts` = (`posts`-1) WHERE `user_id` = ?");
+        $sql->execute([$_SESSION['logged_id']]);
     } catch(PDOException $e) {
         echo "<br>" . $e->getMessage();
     }
