@@ -4,7 +4,7 @@
 <?php
 if (isset($_SESSION['logged_user'])) {
     require_once 'navbar.php';?>
-    <div class="fuckingfuck">
+    <div class="bodyContainer">
     <form name="modifyForm" action="profile.php" method="POST" style="padding-top: 20%">
         <input type="text" name="f_username" placeholder="New username" value=""/>
         <br /><br />
