@@ -11,6 +11,7 @@
 				require_once '../backend/db_likes.php';
 				require_once '../backend/db_comments.php';
 				foreach($images as $image) {
+					$imgLikes = $image['likes'];
 					if (isset($_SESSION['logged_id'])) {
 						$userliked = checkUserLikedImg($_SESSION['logged_id'], $image['img_id']);
 						$usercommented = checkUserCommentedImg($_SESSION['logged_id'], $image['img_id']);
@@ -72,15 +73,18 @@
 										<?php
 										}
 										?>
-										<span class="likes"> Likes: <?php echo(htmlspecialchars($image['likes'])); ?></span>
+										<!-- <span class="likes"> Likes: <?php echo($image['likes']); ?></span> -->
+										<span class="likes"> Likes: </span>
+										<span class="likes" id="likeNb<?php echo($image['img_id']);?>"><?php echo($imgLikes); ?></span>
 									</div>
 									<div class="right">
-										<h5 class="postTime"><?php echo(htmlspecialchars($image['creation_time'])); ?></h5>
+										<h5 class="postTime"><?php echo($image['creation_time']); ?></h5>
 									</div>
 								</div>
 							<?php } else {?>
-								<span class="likes"> Likes: <?php echo(htmlspecialchars($image['likes'])); ?></span>
-								<h5 class="postTime"><?php echo(htmlspecialchars($image['creation_time'])); ?></h5>
+								<span class="likes"> Likes: </span>
+								<span class="likes" id="likeNb<?php echo($image['img_id']);?>"><?php echo($imgLikes); ?></span>
+								<h5 class="postTime"><?php echo($image['creation_time']); ?></h5>
 							<?php }
 							if ($comments) {
 								?><br><?php
@@ -94,7 +98,7 @@
 							if (isset($_SESSION['logged_id'])) { ?>
 							<div class="addComments">
 								<form class="comment_form" name="commentPostForm" onsubmit="ajaxComment(<?php echo($image['img_id']);?>)" method="POST">
-									<input type="text" name="f_comment" id="f_comment<?php echo($image['img_id']);?>" class="text" placeholder="Add a comment...">
+									<input type="text" name="f_comment" id="f_comment<?php echo($image['img_id']);?>" class="text" placeholder="Add a comment..." maxlength="2000" required>
 									<button style="float:right;" class="myBtns" type="submit" name="post_comment" id="post_comment">Post</button>
 								</form>
 							</div>
