@@ -11,7 +11,6 @@ body {
 		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	background: #fafafa;
 	display: flex;
-	/* min-height: 100%; */
 	height: 100%;
 	flex-direction: column;
 }
@@ -29,38 +28,28 @@ main {
 
 main .container {
 	position: relative;
-	/* margin-top: 60px; */
 	width: 50%;
-	/* width: 95%; */
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
-	/* background: #ddd; */
-	/* background-color: rgb(0, 102, 255); */
-	/* background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180)); */
 }
 
-/* col-3 trying side for stickers */
 .col-3 {
 	width: 33%;
 	position: -webkit-sticky;
 	position: sticky;
 	top: 90px;
-	/* background-color: yellow; */
 }
 
 .col-3 h4 {
 	color: rgb(100, 100, 100);
-	/* background-color: yellow; */
 }
 
 .col-3 .card {
 	margin-bottom: 20px;
 	position: relative;
 	width: 100%;
-	/* min-height: 400px; */
 	display: inline-block;
-	/* background-color: yellow; */
 }
 
 .col-3 .card .top {
@@ -68,36 +57,28 @@ main .container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* background-color: red; */
 }
 
 .col-3 .card .top .userDetails {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	/* background-color: red; */
 }
 
 .col-9 {
 	width: 65%;
 	margin-top: 30px;
-	/* background-color: rgb(0, 255, 204); */
 	color: rgb(0, 255, 204);
-	/* border-style: dotted; */
-	/* border-color: rgb(0, 255, 204); */
 }
 
 .col-9 .card {
 	margin-bottom: 20px;
 	position: relative;
 	width: 100%;
-	/* min-height: 400px; */
 	display: inline-block;
 	border: 1px solid rgba(7, 7, 7, 0.24);
 	border-radius: 4px;
 	box-shadow: 7px 7px 17px 0px rgb(0 0 0 / 20%);
-	/* background: linear-gradient(to right, rgb(43, 3, 69), rgb(15, 131, 180)); */
-	/* background-color: rgb(121, 185, 19); */
 }
 
 .col-9 .card .top {
@@ -105,25 +86,21 @@ main .container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* background-color: rgb(255, 221, 0); */
 }
 
 .col-9 .card .bottom {
 	padding: 10px 20px;
-	/* background-color: rgb(218, 102, 29); */
 }
 
 .col-9 .card .top .userDetails {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	/* background-color: rgb(218, 35, 29); */
 }
 
 .profilepic {
 	display: inline-block;
 	cursor: pointer;
-	/* background-color: rgb(218, 101, 29); */
 }
 
 .profilepic .profile_img {
@@ -138,7 +115,6 @@ main .container {
 	padding: 2px;
 	margin-right: 8px;
 	cursor: pointer;
-	/* background-color: rgb(255, 221, 0); */
 }
 
 .profilepic .profile_img .image {
@@ -152,31 +128,19 @@ main .container {
 	align-items: center;
 	justify-content: center;
 	border: 2px solid white;
-	/* background-color: rgb(0, 255, 68); */
 }
 
 .profilepic .profile_img img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	/* background-color: rgb(0, 255, 204); */
 }
 
 .gallery-img {
 	width: 100%;
 }
-/* .cover {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	background-color: blue;
-} */
 
 .col-9 .card .top .userDetails h3 {
-	/* width: 100%; */
 	font-size: 16px;
 	color: #4d4d4f;
 	font-weight: 500;
@@ -191,9 +155,7 @@ main .container {
 .imgBx {
 	position: relative;
 	width: 100%;
-	/* min-height: 600px; */
 	margin: 10px 0 15px;
-	/* background-color: green; */
 }
 
 .actionBtns {
@@ -255,7 +217,6 @@ main .container {
 }
 
 .comment p {
-	/* font-weight: 500; */
 	margin-top: 5px;
 	font-size: 14px;
 	color: #4d4d4f;
@@ -342,7 +303,6 @@ a {
 @media screen and (max-width: 600px) {
 	.container {
 		width: 100% !important;
-		/* overflow: hidden; */
 	}
 
 	.col-9 {
@@ -351,7 +311,6 @@ a {
 	}
 
 	.col-9 .card {
-		/* margin-bottom: 0px; */
 		margin-bottom: 20px;
 		width: 100%;
 		border: none;
@@ -360,7 +319,6 @@ a {
 	.imgBx {
 		position: relative;
 		width: 100%;
-		/* min-height: 400px; */
 		margin: 10px 0 15px;
 	}
 	.likes {

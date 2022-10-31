@@ -66,9 +66,8 @@ body {
 }
 .myBtns:disabled {
 	background-image: linear-gradient(white, white),
-		radial-gradient(circle at top left, rgb(69, 3, 26),
-		rgb(180, 15, 92));
-		color: rgb(180, 15, 92);
+		radial-gradient(circle at top left, rgb(69, 3, 26), rgb(180, 15, 92));
+	color: rgb(180, 15, 92);
 	cursor: default;
 }
 
@@ -120,6 +119,16 @@ body {
 	border: 2px solid white;
 }
 
+.preview {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .sticker {
 	aspect-ratio: 1/1;
 	width: 80%;
@@ -133,6 +142,11 @@ body {
 	position: -webkit-sticky;
 	position: sticky;
 	padding: 10px 0px;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .col-3 h4 {
@@ -141,7 +155,7 @@ body {
 
 .col-3 .card {
 	position: relative;
-	width: 100%;
+	width: 90%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -150,7 +164,7 @@ body {
 
 .col-3 img {
 	aspect-ratio: 1/1;
-	width: 80%;
+	width: 100%;
 	object-fit: cover;
 }
 /* TO HERE my col-3 */
