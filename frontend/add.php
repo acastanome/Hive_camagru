@@ -71,14 +71,15 @@ if (isset($_SESSION['logged_user'])) {
 		</div>
 
 		<div class="col-3">
-			<h4 style="margin: 5px; color: rgb(43, 3, 69);">Previews</h4>
+			<h4 style="margin: 5px; color: rgb(43, 3, 69);">Previews:</br>Click to delete</h4>
 			<?php
 			foreach($images as $image) {
 					?>
 			<div class="card">
 				<div class="sticker-circle">
 					<div class="circle">
-						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>" alt="img">
+						<img src="<?php echo(htmlspecialchars($image['img_path'])); ?>" alt="img" onclick="postDelete(<?php echo($image['img_id']);?>)">
+						
 					</div>
 				</div>
 			</div>
@@ -90,6 +91,7 @@ if (isset($_SESSION['logged_user'])) {
 	</div>
 
 	<script type="text/javascript" src="js/js_add.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/js_delete.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/js_camera.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/js_upload.js" charset="utf-8"></script>
 
