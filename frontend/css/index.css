@@ -15,7 +15,7 @@ body {
 	/* min-height: 100%; */
 	height: 100%;
 }
-.fuckingfuck {
+.bodyContainer {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
