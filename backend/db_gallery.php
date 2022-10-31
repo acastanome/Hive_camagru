@@ -71,4 +71,34 @@ function fetch_imagesByUserId($id) {
       echo "Error: " . $e->getMessage();
     }
 }
+
+function userOwnsImage($userId, $imgId) {
+    $conn = connectPDODB();
+    try {
+        $sql = $conn->prepare("SELECT `img_id` FROM Images WHERE (`user_id` = ? AND `img_id` = ?)");
+        $sql->execute([$userId, $imgId]);
+        $result = $sql->fetch();
+        $conn = null;
+        if ($result) {
+            return $result[0];
+        }
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
+
+function deletePost($imgId) {
+    $conn = connectPDODB();
+    try {
+        // $sql = $conn->prepare("DELETE LOW_PRIORITY FROM Comments WHERE (`img_id` = ?)");
+        $sql = $conn->prepare("DELETE `Comments`,`Likes` FROM `Comments` OUTER JOIN `Likes` ON `Likes`.img_id = `Comments`.img_id WHERE `Likes`.img_id = ?");
+        $sql->execute([$imgId]);
+        $sql = $conn->prepare("DELETE LOW_PRIORITY FROM `Images` WHERE (img_id = ?)");
+        $sql->execute([$imgId]);
+        $sql = $conn->prepare("UPDATE `Users` SET `posts` = (`posts`-1) WHERE `img_id` = ?");
+        $sql->execute([$imgId]);
+    } catch(PDOException $e) {
+        echo "<br>" . $e->getMessage();
+    }
+}
 ?>
