@@ -11,8 +11,7 @@ function ajaxComment(img_id) {
 			"&comment_status=like&comment_text=" +
 			encodeURIComponent(text);
 	} else if (status == "outlineC") {
-		imageComment.src =
-			"http://localhost:8080/camagru/stickers/comment-full.png";
+		imageComment.src = "http://localhost:8080/camagru/media/comment-full.png";
 		imageComment.name = "fullC";
 		data =
 			"comment=1&image_comment=" +

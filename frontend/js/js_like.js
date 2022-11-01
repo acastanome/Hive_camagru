@@ -5,12 +5,12 @@ function ajaxLike(img_id) {
 	let status = imageHeart.name;
 
 	if (status == "full") {
-		imageHeart.src = "http://localhost:8080/camagru/stickers/heart-full.png";
+		imageHeart.src = "http://localhost:8080/camagru/media/heart-full.png";
 		imageHeart.name = "outline";
 		data = "like=1&image_heart=" + img_id + "&heart_status=like";
 		document.getElementById("likeNb" + img_id).innerHTML = likes + 1;
 	} else if (status == "outline") {
-		imageHeart.src = "http://localhost:8080/camagru/stickers/heart-outline.png";
+		imageHeart.src = "http://localhost:8080/camagru/media/heart-outline.png";
 		imageHeart.name = "full";
 		data = "like=1&image_heart=" + img_id + "&heart_status=dislike";
 		if (likes > 0) {
