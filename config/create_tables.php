@@ -10,7 +10,6 @@ function createTableUsers($conn) {
         psswd VARCHAR(128) NOT NULL,
         notifications BOOLEAN DEFAULT true,
         `posts` INT UNSIGNED DEFAULT '0')");
-        // profile_img_id INT UNSIGNED DEFAULT '0')");
     $sql->execute();
 }
 
@@ -45,20 +44,10 @@ function createTableComments($conn) {
     $conn->exec($sql);
 }
 
-function createTableStickers($conn) {
-    $sql = "CREATE TABLE IF NOT EXISTS Stickers (
-        sticker_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        selected BOOLEAN DEFAULT false,
-        sticker_name VARCHAR(30) NOT NULL,
-        sticker_path VARCHAR(250) NOT NULL DEFAULT '')";
-    $conn->exec($sql);
-}
-
 function createTables($conn) {
     createTableUsers($conn);
     createTableImages($conn);
     createTableLikes($conn);
     createTableComments($conn);
-    createTableStickers($conn);
 }
 ?>
