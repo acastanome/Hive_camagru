@@ -27,7 +27,7 @@ if (isset($_SESSION['logged_user']) && isset($_SESSION['logged_id'])) {
         else {
              ?>
              <script type="text/javascript">
-                 console.log("Base64 value isn't a valid image.");
+                 alert("Base64 value isn't a valid image.");
              </script>
              <?php
         }
@@ -47,7 +47,7 @@ if (isset($_SESSION['logged_user']) && isset($_SESSION['logged_id'])) {
         else {
              ?>
              <script type="text/javascript">
-                 console.log("Base64 value isn't a valid image.");
+                 alert("Base64 value isn't a valid image.");
              </script>
              <?php
         }
