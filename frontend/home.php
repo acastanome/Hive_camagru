@@ -2,8 +2,9 @@
 
 <body>
 <?php require_once 'navbar.php'; ?>
-
+<link rel="stylesheet" href="css/gallery.css">
 <div class="bodyContainer">
+
 <?php
 require_once '../backend/db_gallery.php';
 $posts_per_page = 5;
@@ -17,20 +18,14 @@ if($total_posts == 0) {
     <h2>Log in or Sign up to begin your journey</h2>
 <?php
 } else {
-    if (!isset($_GET['page'])) {
+    if (!isset($_GET['page']) || $_GET['page'] < 1 || $_GET['page'] > $total_pages) {
         $page = 1;
         $prev_page = 1;
         $next_page = 2;
     } else {
-        if ($_GET['page'] < 1 || $_GET['page'] > $total_pages) {
-            $page = 1;
-            $prev_page = 1;
-            $next_page = 2;
-        } else {
-            $page = $_GET['page'];
-            $prev_page = $page - 1;
-            $next_page = $page + 1;
-        }
+        $page = $_GET['page'];
+        $prev_page = $page - 1;
+        $next_page = $page + 1;
     }
 
     $images = fetch_images((($page - 1) * $posts_per_page), $posts_per_page);
