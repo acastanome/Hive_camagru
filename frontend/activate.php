@@ -25,8 +25,8 @@
    else {
       echo "Oh no, there is no activation code. You trickster!";
    }
- ?>
-</div>
+   ?>
+   </div>
 <?php require_once 'footer.php';?>
 </body>
 </html>

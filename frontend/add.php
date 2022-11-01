@@ -1,9 +1,10 @@
 <?php require_once 'head.php';?>
 <body>
+	<link rel="stylesheet" href="css/cam.css">
 <?php require_once 'navbar.php';
 require_once '../backend/db_gallery.php';
 ?>
-	<link rel="stylesheet" href="css/cam.css">
+<div class="bodyContainer">
 <?php
 if (isset($_SESSION['logged_user'])) {
 	$images = fetch_imagesByUserId($_SESSION['logged_id']);?>
@@ -102,6 +103,7 @@ if (isset($_SESSION['logged_user'])) {
 	header("Location: login.php");
 }
 ?>
+</div>
 <?php require_once 'footer.php';?>
 </body>
 </html>
