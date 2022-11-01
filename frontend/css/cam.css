@@ -4,14 +4,10 @@
 	box-sizing: border-box;
 }
 
-body {
-	min-height: 100vh !important;
-}
 .container {
-	width: 90%;
 	display: flex;
+	width: 90%;
 	justify-content: center;
-	margin: auto;
 	margin-top: 15px;
 }
 
@@ -75,8 +71,6 @@ body {
 .col-9 {
 	width: 75%;
 	max-width: 665px;
-	position: -webkit-sticky;
-	position: sticky;
 	margin: 10px;
 }
 
@@ -146,7 +140,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 }
 
 .col-3 h4 {
@@ -169,33 +162,10 @@ body {
 }
 /* TO HERE my col-3 */
 
-/* @media screen and (max-width: 1000px) {
-	.col-9 {
-		width: 100%;
-		background: #fafafa;
-	}
-
-	.col-3 {
-		display: none;
-	}
-}
-*/
 @media screen and (max-width: 600px) {
-	/* .col-9 {
-		margin-top: 4px;
-		min-width: 100%;
-	} */
-
-	/* .col-9 .card {
-		margin-bottom: 0px;
-		width: 100%;
-		border: none;
-	} */
-
 	.container {
 		margin: 0;
 		justify-content: center;
-		margin: auto;
 	}
 	.myBtns {
 		font-size: small;
