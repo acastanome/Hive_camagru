@@ -2,7 +2,6 @@
 require_once 'db_connect.php';
 
 function checkUsername($username) {
-    //check username
     if (strlen($username) < 1 || strlen($username) > 30) {
       return "Username must be 1 to 30 characters long, you trickster!";
     }
@@ -12,7 +11,6 @@ function checkUsername($username) {
     return true;
 }
 function checkPsswd($psswd) {
-    //check password
     if (strlen($psswd) < 8 || strlen($psswd) > 30) {
       return "Password must be 8 to 30 characters long, you trickster!";
     }
@@ -22,7 +20,6 @@ function checkPsswd($psswd) {
     return true;
 }
 function checkEmail($email) {
-    //check email
     if (strlen($email) < 3 || strlen($email) > 50) {
         return "Email must be 3 to 50 characters long, you trickster!";
     }
@@ -70,39 +67,11 @@ function updateNotifications($username, $value) {
         echo "<br>" . $e->getMessage();
     }
 }
-// function checkCreateAccountInput($username, $psswd, $email) {
-//     //check username
-//     if (strlen($username) < 1 || strlen($username) > 30) {
-//       return "Username must be 1 to 30 characters long, you trickster!";
-//     }
-//     if (!preg_match('/^[a-zA-Z0-9_]{1,30}$/', $username)) {
-//       return "Username can only contain letters, numbers and the special character _ you trickster!";
-//     }
-//     //check password
-//     if (strlen($psswd) < 8 || strlen($psswd) > 30) {
-//       return "Password must be 8 to 30 characters long, you trickster!";
-//     }
-//     if (!preg_match('/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,30}$/', $psswd)) {
-//       return "Password can only contain letters, numbers and special characters !@#$%^&* (at least one of each), you trickster!";
-//     }
-//     //check email
-//     if (strlen($email) < 3 || strlen($email) > 50) {
-//         return "Email must be 3 to 50 characters long, you trickster!";
-//     }
-//     if (!preg_match('/^(?=.*[@])[a-zA-Z0-9!#$%&`*+-\/=?^_\'.{|}~@]{3,50}$/',$email)) {
-//       return "Email can only contain letters, numbers and special characters !@#$%^&* (atleast one of each), you trickster!";
-//     }
-//     if (isUserOrEmailTaken($username, $email)) {
-//         return "That username or email is already taken.";
-//     }
-//     return true;
-// }
 
-//NO CHECKS updates passed in usernames password to the one provided
 function changePasswd($username, $newPsswd) {
     $conn = connectPDODB();
     try {
-        $newPsswd = password_hash(htmlspecialchars($_POST['f_newpass']), PASSWORD_BCRYPT);
+        $newPsswd = password_hash(htmlspecialchars($newPsswd), PASSWORD_BCRYPT);
         $sql = $conn->prepare("UPDATE `Users` SET `psswd` = ? WHERE `user_name` = ?");
         $sql->execute([$newPsswd, $username]);
         if(!empty($result)) {
@@ -115,7 +84,6 @@ function changePasswd($username, $newPsswd) {
     }
 }
 
-//NO CHECKS updates passed in usernames email to the one provided
 function changeEmail($username, $newEmail) {
     $conn = connectPDODB();
     try {
@@ -127,7 +95,6 @@ function changeEmail($username, $newEmail) {
     }
 }
 
-//NO CHECKS updates passed in username to the one provided
 function changeUsername($username, $newUsername) {
     $conn = connectPDODB();
     try {
