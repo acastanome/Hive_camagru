@@ -1,5 +1,3 @@
-//password_verify and bcrypt
-
 //We don't want alert messages from this function
 function validateResetPassForm(event) {
 	let input = document.forms["resetPassForm"]["f_input"].value;
@@ -16,7 +14,6 @@ function validateResetPassForm(event) {
 
 function validateNewPassForm(event) {
 	let pswd = document.forms["newPassForm"]["f_newpass"].value;
-	// document.forms["newPassForm"]["f_code"].value = code;
 
 	if (!validatePassword(pswd)) {
 		event.preventDefault();
@@ -100,7 +97,6 @@ function validatePassword(pswd) {
 
 /* characters that can be included in email addresses according to RFC 3696 */
 function validateEmail(email) {
-	// console.log(email.length);
 	let regularExpression = /^(?=.*[@])[a-zA-Z0-9!#$%&`*+-/=?^_'.{|}~@]{3,50}$/;
 	if (email.length < 3 || email.length > 50) {
 		alert("Email must be between 3 and 50 characters long");
