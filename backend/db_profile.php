@@ -74,7 +74,7 @@ function changePasswd($username, $newPsswd) {
         $newPsswd = password_hash(htmlspecialchars($newPsswd), PASSWORD_BCRYPT);
         $sql = $conn->prepare("UPDATE `Users` SET `psswd` = ? WHERE `user_name` = ?");
         $sql->execute([$newPsswd, $username]);
-        if(!empty($result)) {
+        if(empty($result)) {
             echo "Your password has been reset!".PHP_EOL;
         } else {
             echo "Problem in password reset.".PHP_EOL;
